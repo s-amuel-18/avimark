@@ -47,6 +47,7 @@ class Factura_model extends CI_Model
             ORDER BY cli.id 
     ";
 
+
     return $this->db->query($sql)->result();
   }
 
