@@ -103,7 +103,7 @@ $fechas_actual = date_format($date, "d/m/Y");
             <td class="w-50">
               <div style="font-size: 18px;" class="title-3 text-orange text-right">
                 DATA
-              </div>
+              </div> 
               <p class="m-0 text-right"><strong>CLIENT</strong>: <?php echo $factura->nombre_cliente ?></p>
               <p class="m-0 text-right"><strong>PAYMENT TERMS</strong>: Payment for <?php echo $factura->nombre_cartera ?></p>
               <p class="m-0 text-right"><strong>to the email</strong>: <?php echo $factura->email_cartera ?></p>
