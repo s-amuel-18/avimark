@@ -38,7 +38,7 @@
 
         <!-- Formulario -->
         <div class="col-lg-8">
-          <form action="<?php echo site_url("admin/facturas/crear") ?>" method="POST" id="form_nueva_factura">
+          <form target="_blanck" action="<?php echo site_url("admin/facturas/crear") ?>" method="POST" id="form_nueva_factura">
             <div class="row m-0">
               <input type="hidden" name="id_factura" value="<?php echo isset($factura->id) ? $factura->id : "0" ?>">
 
