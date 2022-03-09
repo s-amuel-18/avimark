@@ -1,0 +1,30 @@
+## Modificaciones ##
+	- Se debe cambiar el modulo de CATEGORIAS por SERVICIOS, de esta forma se agregaran los precios a los servicios.
+		# tabla CATEGORIAS redombrer
+		# agregar columna extra de PRECIO_SERVICIO
+
+
+## nuevos modulos ## 
+	# MODULO EMPLEADOS #
+	- se debe crear el primer modulos de EMPLEADOS
+		# crear la base de datos con su respectivo CRUD
+		# campos de la base de datos
+			- id
+			- cartera_id = INT
+			- nombre = VARCHAR
+			- updated_at
+			- created_at
+
+		
+	# MODULO ARABE #
+	- se requiere un modulo principal donde se reflejen los empleados de ese modulo en espesifico junto con su respectiva opcion de eliminar y agregar, los servicios de ese modulo en especifico junto con su respectiva opcion de eliminar y agregar, se debe mostrar un historial de registros creados "se refiere a los registros que se deben llenar semanalmente" junto con la opcion de agregar y actualizar.
+
+		# Se requiere un modulo de servicios del arabe donde se refleje los trabjadores junto con las ordenes realizadas, este modulo debe aparecer al clickear el boton de "agregar registro semanal".
+			* este va a ser un cuadro, las ORDENES como columnas y los empleados con filas.
+		# se requiere un modulo de pagos y facturacion donde se vea reflejado el servicio que realizo el trabajor junto con la cantidad de ordenes y su precio, tambien se requiere un boton que permita descargar la factura que se entregara al arabe.
+			01. cuadro de pagos: este debe ser un cuadro que refleje la cantidad de ordenes que se realizo de un servicio, el precio de ese servicio y la multiplicacion del precio por la cantidad.
+			02. la factura debe llevar la suma de todas las ordenes realizadas por los empleados en cada servicio.
+
+		??? NOTA ???
+		* se debe realizar una configuracion previa donde se agregen los participantes de este modulo "servicio del arabe" junto con las servicios que se desean agregar.
+		* la configuracion puede ser actualizable.
