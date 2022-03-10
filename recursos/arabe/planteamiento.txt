@@ -12,6 +12,7 @@
 			- id
 			- cartera_id = INT
 			- nombre = VARCHAR
+			- email
 			- updated_at
 			- created_at
 
