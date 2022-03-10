@@ -108,7 +108,7 @@
                         
                         <?php endif ?> -->
                         
-                        <a onclick="return confirm('¿Deseas crear una nueva factura?')" href="<?php echo site_url("admin_facturas/ver_factura_plantilla/{$factura->id}") ?>" class="btn btn-info btn-sm">
+                        <a target="_blanck" onclick="return confirm('¿Deseas crear una nueva factura?')" href="<?php echo site_url("admin_facturas/ver_factura_plantilla/{$factura->id}") ?>" class="btn btn-info btn-sm">
                           <i class="fas fa-file-pdf"></i>
                         </a>
 

@@ -1,4 +1,6 @@
 function insert_template_item(data_obj) {
+    // console.log(data_obj);
+
     $template = `
   <tr data-id="${data_obj.id}" class="alert fade show" id="categoria_select_${data_obj.id}">
     <td>
@@ -14,7 +16,7 @@ function insert_template_item(data_obj) {
         <div class="input-group-prepend">
           <span class="input-group-text">$</span>
         </div>
-        <input required value="0" id="precio_${data_obj.id}" placeholder="$...." class="form-control input_cantidad_categoria" type="number" min="0" name="precio[${data_obj.id}]">
+        <input required value="${data_obj.precio_total}" id="precio_${data_obj.id}" placeholder="$...." class="form-control input_cantidad_categoria" type="number" min="0" name="precio[${data_obj.id}]">
       </div>
     </td>
     <td>
@@ -27,9 +29,9 @@ function insert_template_item(data_obj) {
 
     </td>
     <td>
-      <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <!-- <button  type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">×</span>
-      </button>
+      </button> -->
     </td>
   </tr>
   `;
@@ -37,11 +39,8 @@ function insert_template_item(data_obj) {
     return $template;
 }
 
-function insertar_template(id, nombre) {
-    $obj_data = {
-        "id": id,
-        "nombre": nombre
-    };
+function insertar_template(obj_data) {
+    $obj_data = obj_data;
 
     $arr_categorias.push($obj_data);
     $template = insert_template_item($obj_data);

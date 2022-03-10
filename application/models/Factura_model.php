@@ -36,7 +36,7 @@ class Factura_model extends CI_Model
               (
                 SELECT COUNT( preci.id ) 
                 FROM precio_servicios AS preci 
-                INNER JOIN categorias AS cate ON cate.id = preci.categoria_id
+                INNER JOIN servicios AS serv ON serv.id = preci.servicio_id
                 WHERE preci.factura_id = fac.id ) AS cantidad_categorias
             FROM {$this->tabla} fac
             LEFT JOIN usuarios AS us ON fac.usuario_id = us.id
@@ -47,20 +47,20 @@ class Factura_model extends CI_Model
             ORDER BY cli.id 
     ";
 
-
+								// var_dump($this->db->query($sql)->result());die();
     return $this->db->query($sql)->result();
   }
 
   public function servicios_factura($factura_id)
   {
     $sql = "SELECT 
-              cat.nombre AS nombre_categoria,
-              cat.id AS categoria_id,
+              serv.nombre AS nombre_categoria,
+              serv.id AS categoria_id,
               pre.cantidad,
               pre.precio,
               ( pre.cantidad * pre.precio ) AS total
             FROM precio_servicios pre
-            INNER JOIN categorias AS cat ON cat.id = pre.categoria_id
+            INNER JOIN servicios AS serv ON serv.id = pre.servicio_id
             WHERE pre.factura_id = {$factura_id}
             ";
 
@@ -79,3 +79,8 @@ class Factura_model extends CI_Model
     return $this->db->query($sql)->row();
   }
 }
+
+
+
+
+
