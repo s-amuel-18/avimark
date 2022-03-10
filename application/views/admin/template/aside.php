@@ -117,7 +117,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="<?php echo site_url("admin_facturas/vista_crear") ?>" class="nav-link">
+							<a href="<?php echo site_url("admin_cliente_arabe") ?>" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Registros Arabe</p>
 							</a>
