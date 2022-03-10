@@ -254,7 +254,7 @@
 
         <!-- vategorias -->
         <div class="col-lg-4">
-          <label for="">Categorias</label>
+          <label for="">Servicio </label>
 
           <table class="table table-valign-middle">
 
