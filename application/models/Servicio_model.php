@@ -14,7 +14,8 @@ class Servicio_model extends CI_Model {
                    ser.precio_empleado,
                    ser.precio_empleado_mayor,
 									 IF( usu.nombre_usuario IS NULL, 'Sin Usuario', usu.nombre_usuario ) AS usuario_creacion,
-                  DATE_FORMAT(ser.created_at, '%d/%m/%Y') AS created_at,
+									 IF( usu.foto IS NULL,  'assets/admin-lte/img/avatar.png', usu.foto) AS foto_usuario,
+                  	DATE_FORMAT(ser.created_at, '%d/%m/%Y') AS created_at,
                    IF( ser.updated_at IS NULL, 'Sin Actualizar', DATE_FORMAT(ser.updated_at, '%d/%m/%Y')  ) AS updated_at
                    FROM {$this->tabla} AS ser
 									 LEFT JOIN usuarios AS usu ON usu.id = ser.usuario_id";

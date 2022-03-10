@@ -142,13 +142,13 @@
 
 
               <div class="col-12 col-md-12">
-                <label for="">Categorias Seleccionadas</label>
+                <label for="">Servicios Seleccionadas</label>
 
                 <table class="table table-valign-middle">
 
                   <thead>
                     <tr>
-                      <th>Categoria</th>
+                      <th>Servicio</th>
                       <th>Cantidad</th>
                       <th>Costo</th>
                       <th>Total Costo</th>
@@ -200,9 +200,9 @@
 
                           </td>
                           <td>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">×</span>
-                            </button>
+                            </button> -->
                           </td>
                         </tr>
 
@@ -252,27 +252,27 @@
 
         </div>
 
-        <!-- vategorias -->
+        <!-- Servicio -->
         <div class="col-lg-4">
           <label for="">Servicio </label>
 
           <table class="table table-valign-middle">
 
-            <?php foreach ($categorias as $key => $categoria) : ?>
+            <?php foreach ($servicios_nuevos as $key => $servicios_nuevo) : ?>
 
               <tr>
 
                 <td style="width: 20px;">
                   <div class="form-group clearfix m-0">
                     <div class="icheck-primary d-inline">
-                      <input <?php echo (isset($id_categorias) and in_array($categoria->id, $id_categorias)) ? "checked" : "" ?> type="checkbox" value="1" data-id="<?php echo $categoria->id ?>" data-nombre="<?php echo $categoria->nombre ?>" class="check_categoria" name="" id="check_categoria_<?php echo $categoria->id ?>">
-                      <label for="check_categoria_<?php echo $categoria->id ?>"></label>
+                      <input <?php echo (isset($id_categorias) and in_array($servicios_nuevo->id, $id_categorias)) ? "checked" : "" ?> type="checkbox" value="1" data-precio_total="<?php echo $servicios_nuevo->precio_total ?>" data-id="<?php echo $servicios_nuevo->id ?>" data-nombre="<?php echo $servicios_nuevo->nombre ?>" class="check_categoria" name="" id="check_categoria_<?php echo $servicios_nuevo->id ?>">
+                      <label for="check_categoria_<?php echo $servicios_nuevo->id ?>"></label>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <label for="check_categoria_<?php echo $categoria->id ?>" class="text-left btn btn-light btn-sm border-0 bg-transparent text-light btn-block">
-                    <?php echo $categoria->nombre ?>
+                  <label for="check_categoria_<?php echo $servicios_nuevo->id ?>" class="text-left btn btn-light btn-sm border-0 bg-transparent text-light btn-block">
+                    <?php echo $servicios_nuevo->nombre ?>
                   </label>
                 </td>
                 <!-- <td>dsads</td> -->

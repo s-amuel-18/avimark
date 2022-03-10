@@ -157,7 +157,7 @@ $fechas_actual = date_format($date, "d/m/Y");
               <td>
               </td>
               <td></td>
-              <td>Impuesto</td>
+              <td>Tax <?php echo $factura->nombre_cartera?></td>
               <td>$<?php echo number_format($impuesto, 2) ?></td>
             </tr>
 
