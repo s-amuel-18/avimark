@@ -66,6 +66,12 @@ $route['admin/clientes/get_cliente']["post"] = 'admin_clientes/get_cliente';
 $route['admin/clientes/actualizar']["post"] = 'admin_clientes/actualizar';
 $route['admin/clientes/eliminar']["post"] = 'admin_clientes/eliminar';
 
+// servicios
+$route['admin/servicios/crear']["post"] = 'admin_servicios/crear';
+$route['admin/servicios/get_servicio']["post"] = 'admin_servicios/get_servicio';
+$route['admin/servicios/actualizar']["post"] = 'admin_servicios/actualizar';
+$route['admin/servicios/eliminar']["post"] = 'admin_servicios/eliminar';
+
 // carteras
 $route['admin/carteras/crear']["post"] = 'admin_carteras/crear';
 $route['admin/carteras/get_cartera']["post"] = 'admin_carteras/get_cartera';
