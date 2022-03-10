@@ -46,16 +46,7 @@
 
 				<?php endif ?>
 
-				<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
-					<!-- Proyectos -->
-					<!-- <li class="nav-item">
-						<a href="<?php echo site_url("admin_info_interna") ?>" class="nav-link">
-							<i class="nav-icon fas fa-info fa-fw"></i>
-							<p>
-								</p>
-							</a>
-						</li> -->
-						
+				<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>						
 						<!-- Facturacion -->
 						<li class="nav-item">
 							<a href="#" class="nav-link">

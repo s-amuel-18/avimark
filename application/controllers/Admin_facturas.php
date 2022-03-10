@@ -40,7 +40,7 @@ class Admin_facturas  extends CI_Controller
 		$mensaje = "Debes tener como minimo ";
 		$clientes = $this->db->get("clientes")->num_rows();
 		$carteras = $this->db->get("carteras")->num_rows();
-		$categorias = $this->db->get("categorias")->num_rows();
+		$servicios = $this->db->get("servicios")->num_rows();
 		$info_interna = $this->db->get("informacion_interna")->num_rows();
 
 		if ($clientes == 0) {
@@ -52,22 +52,24 @@ class Admin_facturas  extends CI_Controller
 		} else if ($info_interna == 0) {
 			$mensaje .= "informacion de la pagina ";
 			$redirect = "admin_info_interna";
-		} else if ($categorias == 0) {
+		} else if ($servicios == 0) {
 			$mensaje .= "un Servicio ";
-			$redirect = "admin_info_interna";
+			$redirect = "admin_servicios";
 		}
 
 		$mensaje .= "para poder crear una factura.";
 		$type = "warning";
 		$color = "warning";
 
-		if ($clientes == 0 or $info_interna == 0 or $carteras == 0 or $categorias == 0) {
+		// var_dump($clientes == 0 or $info_interna == 0 or $carteras == 0 or $servicios == 0);die();
+
+		if ($clientes == 0 or $info_interna == 0 or $carteras == 0 or $servicios == 0) {
 			message(
 				$mensaje,
 				$type,
 				$color
 			);
-
+			// var_dump($redirect);die();
 			redirect($redirect);
 		}
 	}
