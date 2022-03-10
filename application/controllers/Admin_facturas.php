@@ -102,6 +102,9 @@ class Admin_facturas  extends CI_Controller
     $categorias = $this->categoria_model->get_all();
     $data["categorias"] = $categorias;
 
+		$servicios_nuevo = $this->db->select(["id", "nombre", "precio_total"])->get("servicios")->result();
+		$data["servicios_nuevo"] = $servicios_nuevo;		
+
     $clientes = $this->db->get("clientes")->result();
     $data["clientes"] = $clientes;
 
@@ -383,8 +386,8 @@ class Admin_facturas  extends CI_Controller
     $categorias = $this->categoria_model->get_all();
     $data["categorias"] = $categorias;
 
-		$servicios = $this->db->select(["id", "nombre", "precio_total"])->get("servicios")->result();
-		$data["servicios"] = $servicios;
+		$servicios_nuevo = $this->db->select(["id", "nombre", "precio_total"])->get("servicios")->result();
+		$data["servicios_nuevo"] = $servicios_nuevo;
 
     $clientes = $this->db->get("clientes")->result();
     $data["clientes"] = $clientes;
