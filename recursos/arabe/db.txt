@@ -1,0 +1,9 @@
+## TABLAS ##
+	01. empleados_arabe
+		- id
+		- empleado_id
+		- created_at
+	02. servicios_arabe
+		- id
+		- servicio_id
+		- created_at

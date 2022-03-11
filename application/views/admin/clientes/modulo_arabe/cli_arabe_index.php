@@ -18,82 +18,220 @@
       <!-- Main content -->
       <section class="content">
 
-      	<div class="row">
-			  <div class="col-md-4">
-				  <div class="card">
-					  <div class="card-header">
-						  <h3 class="card-title">Empleados</h3>
-		
-						  <div class="card-tools">
-							  <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button>
-						  </div>
-					  </div>
-					  <div class="card-body">
-						  <?php echo validation_errors('<div class="alert alert-danger alert-dismissible fade show">
+      	<?php echo validation_errors('<div class="alert alert-danger alert-dismissible fade show">
 						  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>',  ' *</div>') ?>
-		
-						  <?php $this->load->view("admin/components/alert"); ?>
-		
-		
-						  <!-- tabla de Clientes -->
-						  <table class="table table_data_tr table-striped table-valign-middle">
-							  <thead class="">
-								  <tr>
-									  <th>#</th>
-									  <th>ID</th>
-									  <th>Usuario</th>
-									  <th>Nombre</th>
-									  <th>Nombre De La Empresa</th>
-									  <th>Telefono</th>
-									  <th>Email</th>
-									  <th>ultima Modificacion</th>
-									  <th>Creado</th>
-									  <th>Acciones</th>
-								  </tr>
-							  </thead>
-							  <tbody>
-		
-								  <?php foreach ($clientes as $i => $cliente) : ?>
-		
-									  <tr>
-										  <td><?php echo $i + 1 ?></td>
-										  <td><?php echo $cliente->id ?></td>
-										  <td><?php echo $cliente->usuario_creacion ?></td>
-										  <td><?php echo $cliente->nombre ?></td>
-										  <td><?php echo $cliente->nombre_empresa ?></td>
-										  <td><?php echo $cliente->telefono ?></td>
-										  <td><?php echo $cliente->email ?></td>
-										  <td><?php echo $cliente->updated_at ?></td>
-										  <td><?php echo $cliente->created_at ?></td>
-										  <td>
-											  <form action="<?php echo site_url("admin/clientes/eliminar") ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el cliente '+ '<?php echo $cliente->nombre ?>')">
-												  <input type="hidden" value="<?php echo $cliente->id ?>" name="id">
-												  <?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
-													  <button class="btn btn-warning btn-sm" type="button" data-titulo="Editar cliente '<?php echo $cliente->nombre ?>'" data-toggle="modal" data-target="#nuevo_cliente" data-id="<?php echo $cliente->id ?>">
-														  <i class="fas fa-edit"></i>
-													  </button>
-		
-													  <button class="btn btn-danger btn-sm" type="submit">
-														  <i class="fas fa-trash"></i>
-													  </button>
-												  <?php endif ?>
-											  </form>
-										  </td>
-									  </tr>
-		
-								  <?php endforeach; ?>
-		
-							  </tbody>
-						  </table>
-		
-						  <!-- tabla de Clientes end -->
-		
-		
-		
-		
-					  </div>
-				  </div>
-			  </div>
+
+      	<?php $this->load->view("admin/components/alert"); ?>
+
+
+      	<div class="row">
+
+      		<!-- Configuracionsection -->
+      		<div class="col-md-12">
+      			<div class="card">
+      				<div class="card-header">
+      					<h3 class="card-title">Herramientas</h3>
+
+      					<div class="card-tools">
+
+      						<div class="dropdown dropleft">
+      							<button id="drop_config" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      								<i class="fas fa-bars fa-fw" style="color: var(--fa-navy);"></i>
+      							</button>
+      							<div class="dropdown-menu" aria-labelledby="drop_config">
+      								<a class="dropdown-item dropdown-left" href="<?php echo site_url("admin_cliente_arabe/configuracion")?>">Configuracion</a>
+      							</div>
+      						</div>
+      					</div>
+      				</div>
+
+
+      			</div>
+      		</div>
+
+
+      		<div class="col-lg-4 col-md-6">
+      			<div class="card">
+      				<div class="card-header">
+      					<h3 class="card-title">Empleados</h3>
+
+      					<div class="card-tools">
+      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
+      					</div>
+      				</div>
+      				<div class="card-body">
+
+
+      					<!-- tabla de Clientes -->
+      					<table class="table  table-striped table-valign-middle">
+      						<thead class="">
+      							<tr>
+      								<th>#</th>
+      								<th>ID</th>
+      								<th>Nombre</th>
+      								<th>Acciones</th>
+      							</tr>
+      						</thead>
+      						<tbody>
+
+      							<?php foreach ($clientes as $i => $cliente) : ?>
+
+      								<tr>
+      									<td><?php echo $i + 1 ?></td>
+      									<td><?php echo $cliente->id ?></td>
+      									<td><?php echo $cliente->nombre ?></td>
+      									<td style="width: 50px;">
+      										<form action="<?php echo site_url("admin/clientes/eliminar") ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el cliente '+ '<?php echo $cliente->nombre ?>')">
+      											<input type="hidden" value="<?php echo $cliente->id ?>" name="id">
+      											<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+
+      												<button class="btn btn-danger btn-sm" type="submit">
+      													<i class="fas fa-trash"></i>
+      												</button>
+      											<?php endif ?>
+      										</form>
+      									</td>
+      								</tr>
+
+      							<?php endforeach; ?>
+
+      						</tbody>
+      					</table>
+
+      					<!-- tabla de Clientes end -->
+
+
+
+
+      				</div>
+      			</div>
+      		</div>
+
+      		<!-- servicios -->
+      		<div class="col-lg-4 col-md-6">
+      			<div class="card">
+      				<div class="card-header">
+      					<h3 class="card-title">Servicios</h3>
+
+      					<div class="card-tools">
+      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
+      					</div>
+      				</div>
+      				<div class="card-body">
+      					<!-- tabla de Clientes -->
+      					<table class="table  table-striped table-valign-middle">
+      						<thead class="">
+      							<tr>
+      								<th>#</th>
+      								<th>ID</th>
+      								<th>Nombre</th>
+      								<th>Acciones</th>
+      							</tr>
+      						</thead>
+      						<tbody>
+
+      							<?php foreach ($clientes as $i => $cliente) : ?>
+
+      								<tr>
+      									<td><?php echo $i + 1 ?></td>
+      									<td><?php echo $cliente->id ?></td>
+      									<td><?php echo $cliente->nombre ?></td>
+      									<td style="width: 50px;">
+      										<form action="<?php echo site_url("admin/clientes/eliminar") ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el cliente '+ '<?php echo $cliente->nombre ?>')">
+      											<input type="hidden" value="<?php echo $cliente->id ?>" name="id">
+      											<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+
+      												<button class="btn btn-danger btn-sm" type="submit">
+      													<i class="fas fa-trash"></i>
+      												</button>
+      											<?php endif ?>
+      										</form>
+      									</td>
+      								</tr>
+
+      							<?php endforeach; ?>
+
+      						</tbody>
+      					</table>
+
+      					<!-- tabla de Clientes end -->
+
+
+
+
+      				</div>
+      			</div>
+      		</div>
+
+      		<!-- Registros semanales -->
+      		<div class="col-lg-4 col-md-12">
+      			<div class="card">
+      				<div class="card-header">
+      					<h3 class="card-title">Registros</h3>
+
+      					<div class="card-tools">
+      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
+      					</div>
+      				</div>
+      				<div class="card-body">
+      					<!-- tabla de Clientes -->
+      					<table class="table table_data_tr table-striped table-valign-middle">
+      						<thead class="">
+      							<tr>
+      								<th>#</th>
+      								<th>ID</th>
+      								<th>Nombre</th>
+      								<th>Acciones</th>
+      							</tr>
+      						</thead>
+      						<tbody>
+
+      							<?php foreach ($clientes as $i => $cliente) : ?>
+
+      								<tr>
+      									<td><?php echo $i + 1 ?></td>
+      									<td><?php echo $cliente->id ?></td>
+      									<td><?php echo $cliente->nombre ?></td>
+      									<td style="width: 120px;">
+      										<form action="<?php echo site_url("admin/clientes/eliminar") ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el cliente '+ '<?php echo $cliente->nombre ?>')">
+      											<input type="hidden" value="<?php echo $cliente->id ?>" name="id">
+      											<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+
+      												<a href="" class="btn btn-info btn-sm">
+      													<!-- <i class="fas fa-arrow-up-right-from-square fa-fw" style="color: var(--fa-navy);"></i> -->
+      													<!-- <i class="fas fa-up-right-from-"></i> -->
+      													<!-- <i class="fas fa-arrow-right-from-bracket " style="color: var(--fa-navy);"></i> -->
+      													<!-- <i class="fas fa-arrow-right-to-bracket fa-fw" style="color: var(--fa-navy);"></i> -->
+      													<!-- <i class="fas fa-circle-arrow-right fa-fw" style="color: var(--fa-navy);"></i> -->
+      													<i class="fas fa-file-pdf"></i>
+      												</a>
+
+      												<button class="btn btn-warning btn-sm" type="button" data-titulo="Editar cliente '<?php echo $cliente->nombre ?>'" data-toggle="modal" data-target="#nuevo_cliente" data-id="<?php echo $cliente->id ?>">
+      													<i class="fas fa-edit"></i>
+      												</button>
+
+      												<button class="btn btn-danger btn-sm" type="submit">
+      													<i class="fas fa-trash"></i>
+      												</button>
+      											<?php endif ?>
+      										</form>
+      									</td>
+      								</tr>
+
+      							<?php endforeach; ?>
+
+      						</tbody>
+      					</table>
+
+      					<!-- tabla de Clientes end -->
+
+
+
+
+      				</div>
+      			</div>
+      		</div>
 
       	</div>
 

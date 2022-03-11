@@ -107,6 +107,9 @@ $route['admin/facturas/crear']["post"] = 'admin_facturas/crear';
 $route['admin/facturas/actualizar']["post"] = 'admin_facturas/actualizar';
 $route['admin/facturas/eliminar']["post"] = 'admin_facturas/eliminar';
 
+// cliente arabe
+$route['admin/cliente_arabe/crear_configuracion']["post"] = 'Admin_cliente_arabe/crear_configuracion';
+
 $route['default_controller'] = 'admin_dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
