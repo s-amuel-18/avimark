@@ -46,12 +46,12 @@
 
 				<?php endif ?>
 
-				<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>						
-						<!-- Facturacion -->
-						<li class="nav-item">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-info fa-fw"></i>
-								<p>
+				<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+					<!-- Facturacion -->
+					<li class="nav-item">
+						<a href="#" class="nav-link">
+							<i class="nav-icon fas fa-info fa-fw"></i>
+							<p>
 								Informacion Interna
 								<i class="right fas fa-angle-left"></i>
 							</p>
@@ -108,13 +108,30 @@
 
 				<!-- Clientes -->
 				<li class="nav-item">
-					<a href="<?php echo site_url("admin_clientes") ?>" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="nav-icon fas fa-users"></i>
 						<p>
 							Clientes
+							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo site_url("admin_clientes") ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Administrador de clientes</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo site_url("admin_cliente_arabe") ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Registros Arabe</p>
+							</a>
+						</li>
+
+					</ul>
 				</li>
+
 
 
 
@@ -135,4 +152,3 @@
 	</div>
 	<!-- /.sidebar -->
 </aside>
-
