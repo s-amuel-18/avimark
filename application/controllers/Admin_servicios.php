@@ -277,6 +277,7 @@ class Admin_servicios  extends CI_Controller
 			return false;
 		}
 
+		$this->db->delete("servicios_arabe", ["servicio_id" => $id]);
 
 		$eliminar = $this->db->delete($this->tabla_principal, ["id" => $id]);
 

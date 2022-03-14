@@ -7,3 +7,17 @@
 		- id
 		- servicio_id
 		- created_at
+	03. arabe_registros
+		id
+		created_at
+	04. arabe_servicios_cantidad
+		id
+		arabe_registro_id
+		servicio_id
+		empleado_id
+		cantidad
+	05. arabe_bonos
+		id
+		arabe_registro_id
+		bono
+		tabajo_extra

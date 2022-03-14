@@ -283,6 +283,8 @@ class Admin_empleados  extends CI_Controller
 		}
 
 
+		$this->db->delete("empleados_arabe", ["empleado_id" => $id]);
+
 		$eliminar = $this->db->delete($this->tabla_principal, ["id" => $id]);
 
 		if (!$eliminar) {
@@ -303,4 +305,7 @@ class Admin_empleados  extends CI_Controller
 		redirect("admin_empleados");
 		return false;
 	}
+
+
+
 }

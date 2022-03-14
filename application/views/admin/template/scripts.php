@@ -77,6 +77,7 @@
 
 <!-- functions -->
 <script src="<?php echo base_url() ?>assets/functions/functions_http.js"></script>
+<script src="<?php echo base_url() ?>assets/js/functions/validate_form.js"></script>
 
 <div class="d-none">
   {scripts}
