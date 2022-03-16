@@ -109,6 +109,7 @@ $route['admin/facturas/eliminar']["post"] = 'admin_facturas/eliminar';
 
 // cliente arabe
 $route['admin/cliente_arabe/crear_configuracion']["post"] = 'Admin_cliente_arabe/crear_configuracion';
+$route['admin/cliente_arabe/crear_reporte']["post"] = 'Admin_cliente_arabe/crear_reporte';
 
 $route['default_controller'] = 'admin_dashboard';
 $route['404_override'] = '';

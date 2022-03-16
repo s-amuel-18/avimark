@@ -33,8 +33,13 @@ class Valid_data_user
       redirect("auth");
       return false;
     }
-
+		
     $valid_user = $this->ci->db->get_where("usuarios", ["id" => $userdata["id"]])->row();
+		
+    if (!$valid_user) {
+      redirect("auth");
+      return false;
+    }
 
     $data_user = [
       "id" => $valid_user->id,

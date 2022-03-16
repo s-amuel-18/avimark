@@ -9,6 +9,8 @@
 		- created_at
 	03. arabe_registros
 		id
+		reporte_facturado
+		updated_at
 		created_at
 	04. arabe_servicios_cantidad
 		id
@@ -19,5 +21,6 @@
 	05. arabe_bonos
 		id
 		arabe_registro_id
+		empleado_id
 		bono
 		tabajo_extra

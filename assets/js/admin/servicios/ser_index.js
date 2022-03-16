@@ -91,10 +91,9 @@ $(function() {
         let precio_total = Number(form_servicio.precio_total.value);
         let precio_empleado = Number(form_servicio.precio_empleado.value);
         let precio_empleado_mayor = Number(form_servicio.precio_empleado_mayor.value);
+        console.log(precio_empleado_mayor)
 
-        // e.preventDefault();
-        // console.log((precio_empleado_mayor && precio_empleado_mayor >= precio_total));
-        if (((precio_empleado_mayor && precio_empleado_mayor >= precio_total || precio_empleado >= precio_empleado_mayor)) || (precio_empleado >= precio_total)) {
+        if ((precio_empleado >= precio_total) || (precio_empleado_mayor > 0 && (precio_empleado_mayor >= precio_total || precio_empleado >= precio_empleado_mayor))) {
             e.preventDefault();
 
             Swal.fire(

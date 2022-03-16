@@ -15,4 +15,8 @@ function validate_checks(class_selector) {
     return $validate;
 }
 
+function isNormalInteger(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n >= 0;
+}
 // alert();

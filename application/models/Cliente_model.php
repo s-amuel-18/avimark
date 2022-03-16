@@ -14,7 +14,7 @@ class Cliente_model extends CI_Model {
                    cl.email,
                    cl.telefono,
                    IF( usu.nombre_usuario IS NULL, 'Sin Usuario', usu.nombre_usuario ) AS usuario_creacion,
-                   IF( updated_at IS NULL, 'Sin Actualizar', DATE_FORMAT(updated_at, '%d/%m/%Y')  ) AS updated_at,
+                   IF( cl.updated_at IS NULL, 'Sin Actualizar', DATE_FORMAT( cl.updated_at, '%d/%m/%Y')  ) AS updated_at,
                   DATE_FORMAT(cl.created_at, '%d/%m/%Y') AS created_at
                    FROM {$this->tabla} AS cl
             LEFT JOIN usuarios AS usu ON cl.usuario_id = usu.id 

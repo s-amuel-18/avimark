@@ -13,12 +13,12 @@
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src="<?php echo base_url() ?>assets/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="<?php echo base_url() ?>assets/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/plugins/jquery-mousewheel/jquery.mousewheel.js"></script> -->
+<!-- <script src="<?php echo base_url() ?>assets/plugins/raphael/raphael.min.js"></script> -->
+<!-- <script src="<?php echo base_url() ?>assets/plugins/jquery-mapael/jquery.mapael.min.js"></script> -->
+<!-- <script src="<?php echo base_url() ?>assets/plugins/jquery-mapael/maps/usa_states.min.js"></script> -->
 <!-- ChartJS -->
-<script src="<?php echo base_url() ?>assets/plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/plugins/chart.js/Chart.min.js"></script> -->
 
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo base_url() ?>assets/admin-lte/js/demo.js"></script> -->
@@ -48,6 +48,7 @@
 <!-- jquery-validation -->
 <script src="<?php echo base_url() ?>assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/jquery-numeric/jquery.numeric.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- axios -->
@@ -78,6 +79,7 @@
 <!-- functions -->
 <script src="<?php echo base_url() ?>assets/functions/functions_http.js"></script>
 <script src="<?php echo base_url() ?>assets/js/functions/validate_form.js"></script>
+<script src="<?php echo base_url() ?>assets/js/class_validates.js"></script>
 
 <div class="d-none">
   {scripts}
