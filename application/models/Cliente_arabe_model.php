@@ -124,22 +124,33 @@ class Cliente_arabe_model extends CI_Model
 	public function reporte_completo($ids)
 	{
 		$sql = "SELECT
-					-- sum(empl.id) NO VA 
 					empl.id,
-					-- ar_reg.id AS reporte_id
 					empl.nombre,
-					-- empl.cartera_id
 					car.nombre AS 'cartera',
-					-- ar_bon.empleado_id,
 					SUM(ar_bon.bono) AS 'bono',
 					SUM(ar_bon.tabajo_extra) AS 'tabajo_extra',
-					SUM((
-						-- este subselect nos permite buscar totos los servicios vinculados con el empleado y extraemos su cantidad
+					(SUM((
+						-- este subselect nos permite multiplicar la cantidad de servicios por el valor de este y sumarlo para encontrar el valor total de pago
 						SELECT
-							SUM( ar_ser.cantidad )
+							SUM( 
+								ar_ser.cantidad * 
+								IF( serv_total.precio_empleado_mayor > 0 AND 
+									(
+										SELECT 
+											MAX(ar_ser_sub.cantidad)
+										FROM arabe_servicios_cantidad AS ar_ser_sub 
+										WHERE ar_ser_sub.arabe_registro_id IN ($ids) AND ar_ser_sub.servicio_id = serv_total.id
+									) = ar_ser.cantidad
+										, serv_total.precio_empleado_mayor
+										, serv_total.precio_empleado )
+								 
+							)
 						FROM arabe_servicios_cantidad AS ar_ser
+						INNER JOIN servicios AS serv_total ON serv_total.id = ar_ser.servicio_id 
 						WHERE ar_ser.empleado_id = empl.id AND ar_ser.arabe_registro_id = ar_reg.id  
-					)) AS suma_cantidades,
+					)) + SUM(ar_bon.bono) + SUM(ar_bon.tabajo_extra) ) AS total_pago,
+					
+					-- seleccionamos un elemento nulo para posteriormente agregarle valores con una consulta 
 					NULL AS 'servicios'
 				FROM arabe_registros AS ar_reg
 				INNER JOIN arabe_bonos AS ar_bon ON ar_bon.arabe_registro_id = ar_reg.id 
@@ -147,7 +158,7 @@ class Cliente_arabe_model extends CI_Model
 				INNER JOIN carteras AS car ON empl.cartera_id = car.id
 				WHERE ar_reg.id IN ($ids)
 				GROUP BY empl.id 
-				-- ORDER BY sum(ar_reg.id)
+				-- realizamos una subconsulta de manera que podamos sumar todas las cantidades por empleado y posteriormente ordenarlo
 				ORDER BY SUM((SELECT
 							SUM( ar_ser.cantidad )
 						FROM arabe_servicios_cantidad AS ar_ser
@@ -155,12 +166,11 @@ class Cliente_arabe_model extends CI_Model
 
 
 		$empleados_reporte =  $this->db->query($sql)->result();
-		// return $empleados_reporte;
-		
-		
-		
+
+		// realizamos un siclo que nos permita leer el id del empleado y posteriormente realizar una consulta de los servicios que ha realizado el usuario en su respoectivo reporte.
 		foreach ($empleados_reporte as $empleado) {
 			$sql = "SELECT
+ 						serv.id,
  						serv.nombre,
 						serv.precio_total,
 						serv.precio_empleado,
@@ -196,4 +206,6 @@ class Cliente_arabe_model extends CI_Model
 
 		return $empleados_reporte;
 	}
+
+
 }

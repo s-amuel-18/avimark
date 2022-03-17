@@ -191,12 +191,12 @@ class Admin_clientes  extends CI_Controller
 
 
 
-    foreach ($data_update as $key => $data_upd) {
-      $this->db->set($key, $data_upd);
-    }
+    // foreach ($data_update as $key => $data_upd) {
+    //   $this->db->set($key, $data_upd);
+    // }
 
     $this->db->where("id", $response_client_exist->id);
-    $response = $this->db->update($this->tabla_principal);
+    $response = $this->db->update($this->tabla_principal, $data_update);
 
     if (!$response) {
       message(

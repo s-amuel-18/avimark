@@ -99,8 +99,8 @@ class Admin_cliente_arabe  extends CI_Controller
 
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_index.php", $data, true);
 		$view["scripts"] =  archivos_js([
-			
-			
+
+
 			// base_url("assets/js/admin/clientes/cli_index.js"),
 
 		]);
@@ -126,8 +126,8 @@ class Admin_cliente_arabe  extends CI_Controller
 
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_config.php", $data, true);
 		$view["scripts"] =  archivos_js([
-			
-			
+
+
 			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_config.js"),
 
 		]);
@@ -179,20 +179,20 @@ class Admin_cliente_arabe  extends CI_Controller
 
 	public function vista_creacion_registro()
 	{
-		$servicios = $this->cliente_arabe_model->servicios();
+		$servicios = $this->servicios_arabe;
 		$data["servicios"] = $servicios;
 
-		$empleados = $this->cliente_arabe_model->empleados();
+		$empleados = $this->empleados_arabe;
 		$data["empleados"] = $empleados;
 
-		
-		
+
+
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_crear_reporte.php", $data, true);
 		$view["scripts"] =  archivos_js([
-			
+
 			base_url() . "assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
-			
-			
+
+
 			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
 
 		]);
@@ -216,46 +216,55 @@ class Admin_cliente_arabe  extends CI_Controller
 		// extraemos el id del ultimo reporte
 		$id_insert_reporte = $this->db->insert_id();
 
-		// se realizo un siclo para poder extraer los ids de cada servicio
-		foreach ($request as $key => $value) {
+		try {
+			// se realizo un siclo para poder extraer los ids de cada servicio
+			foreach ($request as $key => $value) {
 
-			// se añade un condicional que nos permita saber si efectivamente la llave del array enviado por el formulario contiene el string "servicios_"
-			if (strpos($key, "servicios_") !== false) {
+				// se añade un condicional que nos permita saber si efectivamente la llave del array enviado por el formulario contiene el string "servicios_"
+				if (strpos($key, "servicios_") !== false) {
 
-				// en caso de tenerlo separamos el valos servicios_ del id y de esta forma extraemos el id. 
-				$servicio_id = explode("servicios_", $key)[1];
+					// en caso de tenerlo separamos el valos servicios_ del id y de esta forma extraemos el id. 
+					$servicio_id = explode("servicios_", $key)[1];
 
-				// se realiza un siclo para poder extraer los ids de los empleados junto con la camtodad de servicios realozados.
-				foreach ($value as $id_empleado => $cantidad_servicios) {
+					// se realiza un siclo para poder extraer los ids de los empleados junto con la camtodad de servicios realozados.
+					foreach ($value as $id_empleado => $cantidad_servicios) {
 
-					// creamos el array de los datos que se insertaran en la base da datos
-					$data_servicios_insert =  [
-						"arabe_registro_id" => $id_insert_reporte,
-						"servicio_id" => $servicio_id,
-						"empleado_id" => $id_empleado,
-						"cantidad" => $cantidad_servicios
-					];
+						// creamos el array de los datos que se insertaran en la base da datos
+						$data_servicios_insert =  [
+							"arabe_registro_id" => $id_insert_reporte,
+							"servicio_id" => $servicio_id,
+							"empleado_id" => $id_empleado,
+							"cantidad" => $cantidad_servicios
+						];
 
-					// 	insertamos en la base de datos
-					$this->db->insert("arabe_servicios_cantidad", $data_servicios_insert);
+						// 	insertamos en la base de datos
+						$this->db->insert("arabe_servicios_cantidad", $data_servicios_insert);
+					}
 				}
 			}
+
+			// se recorre el array bono que nos envia el formulario, de esta forma extraemos el id del empleado, el monto del bono y con el id que nos entrega el empleado buscamos el valor en el array de trabajos extras.
+			foreach ($bonos as $id_empleado => $bono) {
+
+				// array que se insertara en la base de datos
+				$data_bonos_insert = [
+					"arabe_registro_id" => $id_insert_reporte,
+					"empleado_id" => $id_empleado,
+					"bono" => $bono,
+					"tabajo_extra" => $trabajo_extra[$id_empleado]
+				];
+
+				// insertamos en la base de datos.
+				$this->db->insert("arabe_bonos", $data_bonos_insert);
+			}
+		} catch (\Throwable $th) {
+			message(
+				"Ha ocurrido un error",
+				"success",
+				"success"
+			);
 		}
 
-		// se recorre el array bono que nos envia el formulario, de esta forma extraemos el id del empleado, el monto del bono y con el id que nos entrega el empleado buscamos el valor en el array de trabajos extras.
-		foreach ($bonos as $id_empleado => $bono) {
-
-			// array que se insertara en la base de datos
-			$data_bonos_insert = [
-				"arabe_registro_id" => $id_insert_reporte,
-				"empleado_id" => $id_empleado,
-				"bono" => $bono,
-				"tabajo_extra" => $trabajo_extra[$id_empleado]
-			];
-
-			// insertamos en la base de datos.
-			$this->db->insert("arabe_bonos", $data_bonos_insert);
-		}
 
 		message(
 			"Se ha registrado correctamente el Reporte",
@@ -269,20 +278,47 @@ class Admin_cliente_arabe  extends CI_Controller
 	public function vista_reporte()
 	{
 		$ids_reportes = $this->input->get("ids_reportes");
-		$arr_ids_reportes = explode(',', $ids_reportes);
-
-		$reporte = $this->cliente_arabe_model->reporte_completo($ids_reportes);
-		// $data["reporte"] = 
-
-		echo json_encode($reporte);die();
-
-		if( !$ids_reportes ) {
-			show_404();return false;
+		if (!$ids_reportes) {
+			show_404();
+			return false;
 		}
 
+		$arr_ids_reportes = explode(',', $ids_reportes);
+
+		// echo json_encode($arr_ids_reportes);die();
+
+		foreach ($arr_ids_reportes as $id) {
+			if (!is_numeric($id)) {
+				show_404();
+				return false;
+			}
+		}
+
+		$reporte = $this->cliente_arabe_model->reporte_completo($ids_reportes);
+		$data["reporte"] = $reporte;
+
+		$precio_total_servicios = 0;
+
+		foreach ($reporte as $empleado) {
+			// foreach ($empleado->servicios as $servicio) {
+			// }
+			$precio_total_servicios += $empleado->total_pago;
+		}
+
+		$data["precio_total_servicios"] = $precio_total_servicios;
+
+		// $reporte_total_servicios = $this->cliente_arabe_model->total_de_servicios_realizados($ids_reportes);
+		// $data["reporte_total_servicios"] = $reporte_total_servicios; 
+
+		// echo json_encode($reporte_total_servicios);die();
+
+		$servicios = $this->servicios_arabe;
+		$data["servicios"] = $servicios;
+
+		$empleados = $this->empleados_arabe;
+		$data["empleados"] = $empleados;
 
 
-		$data = [];
 
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_reporte.php", $data, true);
 		$view["scripts"] =  archivos_js([
@@ -290,5 +326,154 @@ class Admin_cliente_arabe  extends CI_Controller
 		]);
 
 		$this->parser->parse("admin/template/body", $view);
+	}
+
+	public function vista_reporte_actualizar($id = null)
+	{
+		if (!$id) {
+			show_404();
+			return false;
+		}
+
+
+		$reporte = $this->cliente_arabe_model->reporte_completo($id);
+		$data["reporte"] = $reporte;
+
+		// echo json_encode($reporte);die();
+
+		$servicios = $this->servicios_arabe;
+		$data["servicios"] = $servicios;
+
+		$data["id_reporte"] = $id;
+
+
+
+		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_actualizar_reporte.php", $data, true);
+		$view["scripts"] =  archivos_js([
+			base_url() . "assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
+		]);
+
+
+
+		$this->parser->parse("admin/template/body", $view);
+	}
+
+	public function actualizar_reporte($id)
+	{
+
+		$request = $this->input->post();
+
+		// $id$request["id_reporte"];ç
+
+		$reporte_exist = $this->db->get_where("arabe_registros", ["id" => $id])->row();
+
+		if (!$reporte_exist) {
+			show_404();
+			return false;
+		}
+
+		// var_dump($reporte_exist);
+		// die();
+
+		$arabe_servicios_cantidad = $this->db->delete("arabe_servicios_cantidad", ["arabe_registro_id" => $id]);
+		$arabe_bonos = $this->db->delete("arabe_bonos", ["arabe_registro_id" => $id]);
+
+		$bonos = $request["bono"];
+
+		$trabajo_extra = $request["trabajo_extra"];
+
+
+		// extraemos el id del ultimo reporte
+		$id_insert_reporte = $id;
+		try {
+			// se realizo un siclo para poder extraer los ids de cada servicio
+			foreach ($request as $key => $value) {
+
+				// se añade un condicional que nos permita saber si efectivamente la llave del array enviado por el formulario contiene el string "servicios_"
+				if (strpos($key, "servicios_") !== false) {
+
+					// en caso de tenerlo separamos el valos servicios_ del id y de esta forma extraemos el id. 
+					$servicio_id = explode("servicios_", $key)[1];
+
+					// se realiza un siclo para poder extraer los ids de los empleados junto con la camtodad de servicios realozados.
+					foreach ($value as $id_empleado => $cantidad_servicios) {
+
+						// creamos el array de los datos que se insertaran en la base da datos
+						$data_servicios_insert =  [
+							"arabe_registro_id" => $id_insert_reporte,
+							"servicio_id" => $servicio_id,
+							"empleado_id" => $id_empleado,
+							"cantidad" => $cantidad_servicios
+						];
+
+						// 	insertamos en la base de datos
+						$this->db->insert("arabe_servicios_cantidad", $data_servicios_insert);
+					}
+				}
+			}
+
+			// se recorre el array bono que nos envia el formulario, de esta forma extraemos el id del empleado, el monto del bono y con el id que nos entrega el empleado buscamos el valor en el array de trabajos extras.
+			foreach ($bonos as $id_empleado => $bono) {
+
+				// array que se insertara en la base de datos
+				$data_bonos_insert = [
+					"arabe_registro_id" => $id_insert_reporte,
+					"empleado_id" => $id_empleado,
+					"bono" => $bono,
+					"tabajo_extra" => $trabajo_extra[$id_empleado]
+				];
+
+				// insertamos en la base de datos.
+				$this->db->insert("arabe_bonos", $data_bonos_insert);
+			}
+		} catch (\Throwable $th) {
+			message(
+				"Ha ocurrido un error",
+				"success",
+				"success"
+			);
+		}
+
+		message(
+			"Se ha actualizado correctamente el Reporte",
+			"success",
+			"success"
+		);
+
+
+		redirect("admin_cliente_arabe");
+	}
+
+	public function eliminar_reporte($id)
+	{
+
+		$request = $this->input->post();
+
+		// $id$request["id_reporte"];ç
+
+		$reporte_exist = $this->db->get_where("arabe_registros", ["id" => $id])->row();
+
+		if (!$reporte_exist) {
+			show_404();
+			return false;
+		}
+
+		// var_dump($reporte_exist);
+		// die();
+
+		$arabe_servicios_cantidad = $this->db->delete("arabe_servicios_cantidad", ["arabe_registro_id" => $id]);
+		$arabe_bonos = $this->db->delete("arabe_bonos", ["arabe_registro_id" => $id]);
+		$arabe_registros = $this->db->delete("arabe_registros", ["id" => $id]);
+
+		message(
+			"Se ha eliminado correctamente el Reporte",
+			"success",
+			"success"
+		);
+
+
+		redirect("admin_cliente_arabe");
 	}
 }

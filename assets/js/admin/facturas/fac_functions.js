@@ -176,13 +176,15 @@ $("#form_nueva_factura").on("submit", (e) => {
         $check_valid = 0;
 
         Array.from(cheks_categorias).forEach(el => {
-            if (el.checked) {
-                $check_valid += 1;
-            }
-        })
-
+                if (el.checked) {
+                    $check_valid += 1;
+                }
+            })
+            // console.log($check_valid)
         if ($check_valid < 1) {
             e.preventDefault();
+
+            // alert();
 
             Swal.fire(
                 'Alerta',
@@ -193,6 +195,11 @@ $("#form_nueva_factura").on("submit", (e) => {
         }
 
 
+    } else {
+
+        // e.currentTarget[e.currentTarget.length - 1].disabled = true;
     }
 
 })
+
+// alert();

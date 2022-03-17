@@ -1,7 +1,17 @@
 $(function() {
     // let form_eliminar_empleado = document.querySelectorAll(".form_eliminar_empleado");
 
+    $.validator.setDefaults({
+        submitHandler: function(e) {
+            e.submit();
+            let buttonSubmit = e.querySelector("button[type='submit']")
 
+            if (buttonSubmit) {
+                buttonSubmit.disabled = true
+            }
+
+        }
+    });
 
     // VALIDACION
     $('#form_empleado').validate({

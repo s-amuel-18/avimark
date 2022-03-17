@@ -1,7 +1,17 @@
 $(function() {
     // let form_eliminar_cliente = document.querySelectorAll(".form_eliminar_cliente");
 
+    $.validator.setDefaults({
+        submitHandler: function(e) {
+            e.submit();
+            let buttonSubmit = e.querySelector("button[type='submit']")
 
+            if (buttonSubmit) {
+                buttonSubmit.disabled = true
+            }
+
+        }
+    });
 
     // VALIDACION
     $('#form_cliente').validate({
@@ -34,6 +44,7 @@ $(function() {
             $(element).removeClass('is-invalid');
         }
     });
+
 
 
     // modal 
@@ -84,6 +95,7 @@ $(function() {
         }
 
     })
+
 
 
     // $(".form_eliminar_cliente").on("submit", e => {

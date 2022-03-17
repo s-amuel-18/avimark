@@ -20,6 +20,10 @@
                 "Es obligatorio Seleccionar como minimo un servicio y un empleado",
                 'warning'
             );
+        } else {
+            // e.preventDefault();
+            e.currentTarget[e.currentTarget.length - 1].disabled = true;
+
         }
 
     })

@@ -11,16 +11,17 @@ class Empleado_model extends CI_Model {
     $sql = "SELECT empl.id,
                    empl.nombre,
                    cat.nombre AS 'cartera',
-                   empl.email,
+                   IF( empl.email IS NULL OR empl.email = '', 'Sin Email', empl.email ) AS email,
                    IF( usu.nombre_usuario IS NULL, 'Sin Usuario', usu.nombre_usuario ) AS usuario_creacion,
-                   IF( empl.updated_at IS NULL, 'Sin Actualizar', DATE_FORMAT(empl.updated_at, '%d/%m/%Y')  ) AS updated_at,
+                   IF( empl.updated_at IS NULL , 'Sin Actualizar', DATE_FORMAT(empl.updated_at, '%d/%m/%Y')  ) AS updated_at,
                   DATE_FORMAT(empl.created_at, '%d/%m/%Y') AS created_at
                    FROM {$this->tabla} AS empl
             LEFT JOIN usuarios AS usu ON empl.usuario_id = usu.id 
             LEFT JOIN carteras AS cat ON empl.cartera_id = cat.id 
             ORDER BY empl.created_at";
-            // echo $sql;die();
-            // var_dump($sql);die();
+
+            // echo json_encode($this->db->query($sql)->result());die();
+
   return $this->db->query($sql)->result();
 
   }

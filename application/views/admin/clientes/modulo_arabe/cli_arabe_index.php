@@ -157,55 +157,62 @@
       					</div>
       				</div>
       				<div class="card-body">
+
+					  <?php if( count($reportes) > 0 ):?>
+						<table class="table  table-striped table-valign-middle">
+							<thead class="">
+								<tr>
+									<th>#</th>
+									<th>ID</th>
+									<th>Facturado</th>
+									<th>Creacion</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+  
+								<?php foreach ($reportes as $i => $reporte) : ?>
+  
+									<tr>
+										<td><?php echo $i + 1 ?></td>
+										<td><?php echo $reporte->id ?></td>
+										<td>
+											<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
+												<?php echo $reporte->reporte_facturado ?>
+											</span>
+										</td>
+										<td><?php echo $reporte->created_at ?></td>
+										<td style="width: 150px;">
+											<form action="<?php echo site_url("admin/cliente_arabe/eliminar_reporte/" . $reporte->id) ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
+												<input type="hidden" value="<?php echo $reporte->id ?>" name="id">
+												<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+  
+  
+													<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte/?ids_reportes=$reporte->id") ?>" class="btn btn-info btn-sm">
+														<i class="fas fa-file-pdf"></i>
+													</a>
+													<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte_actualizar/$reporte->id") ?>" class="btn btn-warning btn-sm">
+														<i class="fas fa-edit"></i>
+													</a>
+  
+													<button class="btn btn-danger btn-sm" type="submit">
+														<i class="fas fa-trash"></i>
+													</button>
+  
+  
+												<?php endif ?>
+											</form>
+										</td>
+									</tr>
+  
+								<?php endforeach; ?>
+  
+							</tbody>
+						</table>
+					  <?php else:?>
+						<div class="text-center text-muted">No gay reportes registrados</div>
+					  <?php endif?>
       					<!-- tabla de Clientes -->
-      					<table class="table  table-striped table-valign-middle">
-      						<thead class="">
-      							<tr>
-      								<th>#</th>
-      								<th>ID</th>
-      								<th>Facturado</th>
-      								<th>Creacion</th>
-      								<th>Acciones</th>
-      							</tr>
-      						</thead>
-      						<tbody>
-
-      							<?php foreach ($reportes as $i => $reporte) : ?>
-
-      								<tr>
-      									<td><?php echo $i + 1 ?></td>
-      									<td><?php echo $reporte->id ?></td>
-      									<td>
-      										<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
-											  <?php echo $reporte->reporte_facturado ?>
-      										</span>
-      									</td>
-      									<td><?php echo $reporte->created_at ?></td>
-      									<td style="width: 150px;">
-      										<form action="<?php echo site_url("admin/reportes/eliminar") ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
-      											<input type="hidden" value="<?php echo $reporte->id ?>" name="id">
-      											<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
-
-      												<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte/?ids_reportes=$reporte->id")?>" class="btn btn-info btn-sm">
-      													<i class="fas fa-file-pdf"></i>
-      												</a>
-
-      												<button class="btn btn-warning btn-sm" type="button" ">
-      													<i class="fas fa-edit"></i>
-      												</button>
-
-      												<button class="btn btn-danger btn-sm" type="submit">
-      													<i class="fas fa-trash"></i>
-      												</button>
-      											<?php endif ?>
-      										</form>
-      									</td>
-      								</tr>
-
-      							<?php endforeach; ?>
-
-      						</tbody>
-      					</table>
 
       					<!-- tabla de reportes end -->
 

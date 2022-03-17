@@ -2,6 +2,17 @@ $(function() {
     // let form_eliminar_cliente = document.querySelectorAll(".form_eliminar_cliente");
     // alert();
 
+    $.validator.setDefaults({
+        submitHandler: function(e) {
+            e.submit();
+            let buttonSubmit = e.querySelector("button[type='submit']")
+
+            if (buttonSubmit) {
+                buttonSubmit.disabled = true
+            }
+
+        }
+    });
 
     // VALIDACION
     $('#form_reporte_arabe').validate({

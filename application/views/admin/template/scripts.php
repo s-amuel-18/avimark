@@ -81,11 +81,43 @@
 <script src="<?php echo base_url() ?>assets/js/functions/validate_form.js"></script>
 <script src="<?php echo base_url() ?>assets/js/class_validates.js"></script>
 
+<script>
+		// $.validator.setDefaults({
+    //     submitHandler: function(e) {
+		// 			e.submit();
+		// 				let buttonSubmit = e.querySelector("button[type='submit']")
+
+		// 				if( buttonSubmit ) {
+		// 					buttonSubmit.disabled = true
+		// 				}
+						
+    //     }
+    // });
+</script>
+
 <div class="d-none">
   {scripts}
+	
 </div>
 
 <script>
+
+// alert();
+	// const form_prueba = document.querySelectorAll("form");
+	// if (form_prueba) {
+	// 	Array.from(form_prueba).forEach(element => {
+	// 		element.addEventListener("submit", e => {
+	// 			e.preventDefault();
+	// 			// console.log(e.submitter.disabled = true)
+	// 			console.log($("#form_cliente").validate().errorList.length == 0 )
+	// 			console.log($("#form_cliente").validate())
+	// 		})	
+	// 	});
+	// }
+	
+	
+
+	
   $(function() {
     //Money Euro
     $('[data-mask]').inputmask()
@@ -144,37 +176,6 @@
   endif;
   ?>
 
-  const avatarInput = document.querySelector('#photo_perfil_input');
-  // const avatarName = document.querySelector('.input_file__button');
-  const imagePreview = document.querySelector('#photo_perfil');
-  const photo_perfil_aside = document.querySelector('#photo_perfil_aside');
-  // const button_select_img = document.querySelector('#select_photo_perfil');
-  // alert("sdsa");
-  avatarInput.addEventListener('change', e => {
-    // envio de foto
-
-    let input = e.currentTarget;
-    let fileName = input.files[0].name;
-    const file = input.files[0];
-
-    if (!file.type.includes("image/")) {
-      toastr.error("el archivo subido debe ser una imagen");
-      input.value = "";
-      imagePreview.setAttribute('src', "https://i.ibb.co/0Jmshvb/no-image.png");
-      return;
-    }
-    post_foto_perfil('<?php echo site_url("admin_proyecto/upload_foto_perfil") ?>')
-    // button_select_img.innerText = `File: ${fileName}`;
-
-    const fileReader = new FileReader();
-    fileReader.addEventListener('load', e => {
-      let imageData = e.target.result;
-      imagePreview.setAttribute('src', imageData);
-      photo_perfil_aside.setAttribute('src', imageData);
-    })
-
-    fileReader.readAsDataURL(input.files[0]);
-  });
   var clipboard = new ClipboardJS('.copy');
 
   $(function() {
