@@ -61,7 +61,7 @@
 
       										<?php foreach ($empleado->servicios as $servicio) : ?>
       											<td>
-      												<input required class="form-control solo_entero_positivo" type="number" name="servicios_<?php echo  $servicio->id  ?>[<?php echo  $empleado->id  ?>]" value="<?php echo  $servicio->cantidad_realizada  ?>" min="0" placeholder="<?php echo $servicio->nombre ?>">
+      												<input required class="form-control solo_entero_positivo <?php echo  $servicio->precio_empleado_mayor ? 'input_reporte_servicio' : ''  ?> " data-servicio="<?php echo  $servicio->nombre  ?>" data-id="<?php echo  $servicio->id  ?>" type="number" name="servicios_<?php echo  $servicio->id  ?>[<?php echo  $empleado->id  ?>]" value="<?php echo  $servicio->cantidad_realizada  ?>" min="0" placeholder="<?php echo $servicio->nombre ?>">
       											</td>
       										<?php endforeach ?>
       						

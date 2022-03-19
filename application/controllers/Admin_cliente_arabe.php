@@ -193,7 +193,8 @@ class Admin_cliente_arabe  extends CI_Controller
 			base_url() . "assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
 
 
-			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
+			// base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_crear_reporte.js"),
 
 		]);
 
@@ -272,7 +273,7 @@ class Admin_cliente_arabe  extends CI_Controller
 			"success"
 		);
 
-		redirect("admin_cliente_arabe");
+		redirect("admin_cliente_arabe/vista_reporte?ids_reportes=".$id_insert_reporte);
 	}
 
 	public function vista_reporte()
@@ -351,8 +352,7 @@ class Admin_cliente_arabe  extends CI_Controller
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_actualizar_reporte.php", $data, true);
 		$view["scripts"] =  archivos_js([
 			base_url() . "assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
-			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
-			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_crear_reporte.js"),
 		]);
 
 
@@ -443,7 +443,8 @@ class Admin_cliente_arabe  extends CI_Controller
 		);
 
 
-		redirect("admin_cliente_arabe");
+		// redirect("admin_cliente_arabe");
+		redirect("admin_cliente_arabe/vista_reporte?ids_reportes=".$id_insert_reporte);
 	}
 
 	public function eliminar_reporte($id)
