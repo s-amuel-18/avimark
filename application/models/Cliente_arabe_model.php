@@ -110,12 +110,14 @@ class Cliente_arabe_model extends CI_Model
 
 		$sql = "SELECT 
 					id,
+					reporte_facturado AS reporte_facturado_bool,
                    IF( reporte_facturado = 0, 'Sin Facturar', 'Facturado'  ) AS reporte_facturado,
                    IF( reporte_facturado = 0, 'danger', 'success'  ) AS reporte_facturado_color,
                    IF( updated_at IS NULL, 'Sin Actualizar', DATE_FORMAT(updated_at, '%d/%m/%Y')  ) AS updated_at,
+				   created_at AS timestamp_created_at,
 				   DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at
 				FROM arabe_registros AS ar_reg
-				ORDER BY created_at, id DESC
+				ORDER BY timestamp_created_at DESC, reporte_facturado DESC 
 				$limit_sql";
 
 		return $this->db->query($sql)->result();

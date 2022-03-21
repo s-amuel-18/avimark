@@ -34,7 +34,7 @@
       					<h3 class="card-title">Reporte</h3>
 
       					<div class="card-tools">
-      						<a href="<?php echo site_url("admin_cliente_arabe/vista_creacion_registro") ?>" class="btn btn-primary btn-sm">Facturar</a>
+      						<a href="<?php echo site_url("admin_cliente_arabe/facturar_reportes?" . $url_parametros) ?>" class="btn btn-primary btn-sm">Facturar</a>
       					</div>
       				</div>
 
@@ -114,7 +114,7 @@
 
       								<th>--------</th>
       								<th>Total a pagar</th>
-      								<th>$<?php echo $precio_total_servicios ?></th>
+      								<th>$<?php echo number_format( $precio_total_servicios, 2 ) ?></th>
       							</tr>
       						</tfoot>
       					</table>

@@ -26,6 +26,7 @@ class Admin_facturas  extends CI_Controller
 			"session",
 			"valid_data_user",
 			"pdf",
+			"Crear_pdf",
 		]);
 
 		$this->load->model([
@@ -336,14 +337,13 @@ class Admin_facturas  extends CI_Controller
 	{
 		$data = $_SESSION["factura_data"];
 
-		$relleno_tablas = 11 - count($data["servicios"]);
+		// $relleno_tablas = 11 - count($data["servicios"]);
 
-		for ($i = 0; $i < $relleno_tablas; $i++) {
-			array_push($data["servicios"], null);
-		}
+		// for ($i = 0; $i < $relleno_tablas; $i++) {
+		// 	array_push($data["servicios"], null);
+		// }
 
-		// var_dump($data["servicios"]);die();
-		$this->create_pdf($data);
+		$this->crear_pdf->factura($data);
 	}
 
 	public function vista_actualizar($id_factura = null)
@@ -579,21 +579,4 @@ class Admin_facturas  extends CI_Controller
 		return false;
 	}
 
-	private function create_pdf($data = [])
-	{
-
-		$dompdf = new Dompdf();
-
-		$html = $this->load->view("admin/facturas/pdf/fac_pdf", $data, true);
-		$opt = $dompdf->getOptions();
-		$opt->set(["isRemoteEnabled" => true]);
-		$dompdf->setOptions($opt);
-
-		$dompdf->loadHtml($html);
-		$dompdf->setPaper("letter");
-		$dompdf->render();
-
-
-		$dompdf->stream("FAC{$data["factura"]->numero_factura}.pdf", ["Attachment" => false]);
-	}
 }

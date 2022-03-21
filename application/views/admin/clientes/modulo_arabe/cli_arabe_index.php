@@ -51,10 +51,11 @@
 
 
       			</div>
+
       		</div>
 
 
-      		<div class="col-lg-4 col-md-6">
+      		<div class="col-lg-3 col-md-6">
       			<div class="card">
       				<div class="card-header">
       					<h3 class="card-title">Empleados</h3>
@@ -71,7 +72,7 @@
       						<thead class="">
       							<tr>
       								<th>#</th>
-      								<th>ID</th>
+      								<!-- <th>ID</th> -->
       								<th>Nombre</th>
       								<!-- <th>Acciones</th> -->
       							</tr>
@@ -80,9 +81,9 @@
 
       							<?php foreach ($this->empleados_arabe as $i => $empleado) : ?>
 
-      								<tr>
+      								<tr id="empleado_id_<?php echo $empleado->id ?>">
       									<td><?php echo $i + 1 ?></td>
-      									<td><?php echo $empleado->id ?></td>
+      									<!-- <td><?php echo $empleado->id ?></td> -->
       									<td><?php echo $empleado->nombre ?></td>
 
       								</tr>
@@ -102,7 +103,7 @@
       		</div>
 
       		<!-- servicios -->
-      		<div class="col-lg-4 col-md-6">
+      		<div class="col-lg-3 col-md-6">
       			<div class="card">
       				<div class="card-header">
       					<h3 class="card-title">Servicios</h3>
@@ -117,7 +118,7 @@
       						<thead class="">
       							<tr>
       								<th>#</th>
-      								<th>ID</th>
+      								<!-- <th>ID</th> -->
       								<th>Nombre</th>
       								<!-- <th>Acciones</th> -->
       							</tr>
@@ -126,9 +127,9 @@
 
       							<?php foreach ($this->servicios_arabe as $i => $servicio) : ?>
 
-      								<tr>
+      								<tr id="servicio_id_<?php echo $servicio->id ?>">
       									<td><?php echo $i + 1 ?></td>
-      									<td><?php echo $servicio->id ?></td>
+      									<!-- <td><?php echo $servicio->id ?></td> -->
       									<td><?php echo $servicio->nombre ?></td>
       								</tr>
 
@@ -147,71 +148,92 @@
       		</div>
 
       		<!-- Registros semanales -->
-      		<div class="col-lg-4 col-md-12">
+      		<div class="col-lg-6 col-md-12">
       			<div class="card">
       				<div class="card-header">
       					<h3 class="card-title">Reporte</h3>
 
       					<div class="card-tools">
-      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
+      						<button form="form_reportes_select" id="submit_button_reportes_select" class="btn btn-primary btn-sm" type="submit" disabled>Ver Reporte</button>
       					</div>
       				</div>
       				<div class="card-body">
 
-					  <?php if( count($reportes) > 0 ):?>
-						<table class="table  table-striped table-valign-middle">
-							<thead class="">
-								<tr>
-									<th>#</th>
-									<th>ID</th>
-									<th>Facturado</th>
-									<th>Creacion</th>
-									<th>Acciones</th>
-								</tr>
-							</thead>
-							<tbody>
-  
-								<?php foreach ($reportes as $i => $reporte) : ?>
-  
-									<tr>
-										<td><?php echo $i + 1 ?></td>
-										<td><?php echo $reporte->id ?></td>
-										<td>
-											<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
-												<?php echo $reporte->reporte_facturado ?>
-											</span>
-										</td>
-										<td><?php echo $reporte->created_at ?></td>
-										<td style="width: 150px;">
-											<form action="<?php echo site_url("admin/cliente_arabe/eliminar_reporte/" . $reporte->id) ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
-												<input type="hidden" value="<?php echo $reporte->id ?>" name="id">
-												<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
-  
-  
-													<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte/?ids_reportes=$reporte->id") ?>" class="btn btn-info btn-sm">
-														<i class="fas fa-file-pdf"></i>
-													</a>
-													<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte_actualizar/$reporte->id") ?>" class="btn btn-warning btn-sm">
-														<i class="fas fa-edit"></i>
-													</a>
-  
-													<button class="btn btn-danger btn-sm" type="submit">
-														<i class="fas fa-trash"></i>
-													</button>
-  
-  
-												<?php endif ?>
-											</form>
-										</td>
-									</tr>
-  
-								<?php endforeach; ?>
-  
-							</tbody>
-						</table>
-					  <?php else:?>
-						<div class="text-center text-muted">No gay reportes registrados</div>
-					  <?php endif?>
+      					<?php if (count($reportes) > 0) : ?>
+
+      						<form action="<?php echo site_url("admin_cliente_arabe/vista_reporte/") ?>" id="form_reportes_select" method="GET">
+
+      							<table class="table  table-striped table-valign-middle">
+      								<thead class="">
+      									<tr>
+      										<th>#</th>
+      										<th>ID</th>
+      										<th>Facturado</th>
+      										<th>Creacion</th>
+      										<th>Acciones</th>
+      									</tr>
+      								</thead>
+      								<tbody>
+
+      									<?php foreach ($reportes as $i => $reporte) : ?>
+
+
+      										<tr>
+      											<td>
+													  
+      												<div class="form-group clearfix m-0">
+      													<div class="icheck-primary d-inline">
+      														<input type="checkbox" class="input_reporte_check" value="<?php echo $reporte->id ?>" name="ids_reportes[<?php echo $reporte->id ?>]" id="check_reporte_<?php echo $reporte->id ?>">
+      														<label for="check_reporte_<?php echo $reporte->id ?>"></label>
+      													</div>
+      												</div>
+
+      											</td>
+
+      											<td><?php echo $reporte->id ?></td>
+      											<td>
+      												<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
+      													<?php echo $reporte->reporte_facturado ?>
+      												</span>
+      											</td>
+
+      											<td>
+													  <span  data-fecha="<?php echo $reporte->timestamp_created_at ?>" class="moment_format"><?php echo $reporte->created_at ?></span>
+												  </td>
+												  
+      											<td style="width: 150px;">
+      												<form action="<?php echo site_url("admin/cliente_arabe/eliminar_reporte/" . $reporte->id) ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
+      													<input type="hidden" value="<?php echo $reporte->id ?>" name="id">
+      													<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
+
+
+      														<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte/?ids_reportes[$reporte->id]=$reporte->id") ?>" class="btn btn-info btn-sm">
+      															<i class="fas fa-file-pdf"></i>
+      														</a>
+      														<a href="<?php echo site_url("admin_cliente_arabe/vista_reporte_actualizar/$reporte->id") ?>" class="btn btn-warning btn-sm">
+      															<i class="fas fa-edit"></i>
+      														</a>
+
+      														<button class="btn btn-danger btn-sm" type="submit">
+      															<i class="fas fa-trash"></i>
+      														</button>
+
+
+      													<?php endif ?>
+      												</form>
+      											</td>
+      										</tr>
+
+      									<?php endforeach; ?>
+
+      								</tbody>
+      							</table>
+
+      						</form>
+
+      					<?php else : ?>
+      						<div class="text-center text-muted">No gay reportes registrados</div>
+      					<?php endif ?>
       					<!-- tabla de Clientes -->
 
       					<!-- tabla de reportes end -->

@@ -101,7 +101,7 @@ class Admin_cliente_arabe  extends CI_Controller
 		$view["scripts"] =  archivos_js([
 
 
-			// base_url("assets/js/admin/clientes/cli_index.js"),
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_index.js"),
 
 		]);
 
@@ -273,21 +273,28 @@ class Admin_cliente_arabe  extends CI_Controller
 			"success"
 		);
 
-		redirect("admin_cliente_arabe/vista_reporte?ids_reportes=".$id_insert_reporte);
+		redirect("admin_cliente_arabe/vista_reporte?ids_reportes[$id_insert_reporte]=" . $id_insert_reporte);
 	}
 
 	public function vista_reporte()
 	{
+		// extraemos el array de ids de los reportes
 		$ids_reportes = $this->input->get("ids_reportes");
-		if (!$ids_reportes) {
+
+		// validamos que efectivamente los ids se estan enviando correctamente y que se estan enviando como array
+		if (!$ids_reportes and !is_array($ids_reportes)) {
 			show_404();
 			return false;
 		}
 
-		$arr_ids_reportes = explode(',', $ids_reportes);
 
-		// echo json_encode($arr_ids_reportes);die();
 
+		$arr_ids_reportes = $ids_reportes;
+
+		// convertimos el array en un string separando los ids con comas
+		$ids_reportes = implode(",", $ids_reportes);
+
+		// recorremos el array de forma que validemos que el array que se esta enviando como parametro cumple con las reglas de SOLO NUmeros
 		foreach ($arr_ids_reportes as $id) {
 			if (!is_numeric($id)) {
 				show_404();
@@ -295,23 +302,39 @@ class Admin_cliente_arabe  extends CI_Controller
 			}
 		}
 
+		// realizamos la consulta
 		$reporte = $this->cliente_arabe_model->reporte_completo($ids_reportes);
+
+		// validamos que la consulta no llegue vacia
+		if (count($reporte) < 1) {
+			show_404();
+			return false;
+		}
+
+		// enviamos el reporte como parametro
 		$data["reporte"] = $reporte;
 
+		// creamos una variable auxiliar que nos va a permitir sumar los valores totales de los servicios.
 		$precio_total_servicios = 0;
 
+		// recorremos los datos que nos traiga la consulta de forma que podamos sumar todos los valores totales de esta
 		foreach ($reporte as $empleado) {
-			// foreach ($empleado->servicios as $servicio) {
-			// }
 			$precio_total_servicios += $empleado->total_pago;
 		}
 
+
+		$url_parametros = "";
+
+		// recorremos el array de ids de forma que podamos crear un nuevo string que representan los parametros de los ids en la url
+		foreach ($this->input->get("ids_reportes") as $i => $item) {
+			$url_parametros .= $item = "ids_reportes[$item]=$item&";
+		}
+		// eliminamos el ultimo "&" de el string
+		$url_parametros = rtrim($url_parametros, "&");
+
+		$data["url_parametros"] = $url_parametros;
+
 		$data["precio_total_servicios"] = $precio_total_servicios;
-
-		// $reporte_total_servicios = $this->cliente_arabe_model->total_de_servicios_realizados($ids_reportes);
-		// $data["reporte_total_servicios"] = $reporte_total_servicios; 
-
-		// echo json_encode($reporte_total_servicios);die();
 
 		$servicios = $this->servicios_arabe;
 		$data["servicios"] = $servicios;
@@ -329,6 +352,35 @@ class Admin_cliente_arabe  extends CI_Controller
 		$this->parser->parse("admin/template/body", $view);
 	}
 
+	public function facturar_reportes()
+	{
+		// extraemos el array de ids de los reportes
+		$ids_reportes = $this->input->get("ids_reportes");
+
+		// validamos que efectivamente los ids se estan enviando correctamente y que se estan enviando como array
+		if (!$ids_reportes and !is_array($ids_reportes)) {
+			show_404();
+			return false;
+		}
+
+
+
+		$arr_ids_reportes = $ids_reportes;
+
+		// convertimos el array en un string separando los ids con comas
+		$ids_reportes = implode(",", $ids_reportes);
+
+		// recorremos el array de forma que validemos que el array que se esta enviando como parametro cumple con las reglas de SOLO NUmeros
+		foreach ($arr_ids_reportes as $id) {
+			if (!is_numeric($id)) {
+				show_404();
+				return false;
+			}
+		}
+
+		
+	}
+
 	public function vista_reporte_actualizar($id = null)
 	{
 		if (!$id) {
@@ -338,6 +390,12 @@ class Admin_cliente_arabe  extends CI_Controller
 
 
 		$reporte = $this->cliente_arabe_model->reporte_completo($id);
+
+		if (count($reporte) < 1) {
+			show_404();
+			return false;
+		}
+
 		$data["reporte"] = $reporte;
 
 		// echo json_encode($reporte);die();
@@ -444,7 +502,7 @@ class Admin_cliente_arabe  extends CI_Controller
 
 
 		// redirect("admin_cliente_arabe");
-		redirect("admin_cliente_arabe/vista_reporte?ids_reportes=".$id_insert_reporte);
+		redirect("admin_cliente_arabe/vista_reporte?ids_reportes[$id_insert_reporte]=" . $id_insert_reporte);
 	}
 
 	public function eliminar_reporte($id)

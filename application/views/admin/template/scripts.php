@@ -1,5 +1,5 @@
 <script>
-  const site_url = "<?php echo site_url("/") ?>";
+	const site_url = "<?php echo site_url("/") ?>";
 </script>
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
@@ -30,7 +30,7 @@
 <!-- Bootstrap4 Duallistbox -->
 <script src="<?php echo base_url() ?>assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
-<script src="<?php echo base_url() ?>assets/plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url() ?>assets/plugins/moment/moment-with-locales.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- date-range-picker -->
 <script src="<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
@@ -82,27 +82,39 @@
 <script src="<?php echo base_url() ?>assets/js/class_validates.js"></script>
 
 <script>
-		// $.validator.setDefaults({
-    //     submitHandler: function(e) {
-		// 			e.submit();
-		// 				let buttonSubmit = e.querySelector("button[type='submit']")
+	moment.lang('es')
+	const moment_format = document.querySelectorAll(".moment_format");
 
-		// 				if( buttonSubmit ) {
-		// 					buttonSubmit.disabled = true
-		// 				}
-						
-    //     }
-    // });
+	Array.from(moment_format).forEach(el => {
+		const fecha = el.dataset.fecha;
+		const formato = el.dataset.formato ? el.dataset.formato : "DD [de] MMMM [del] YYYY [a las] HH:mm";
+
+		if (fecha) {
+			let fecha_formateada = moment(fecha).format(formato);
+			el.textContent = fecha_formateada;
+		}
+	})
+
+	// $.validator.setDefaults({
+	//     submitHandler: function(e) {
+	// 			e.submit();
+	// 				let buttonSubmit = e.querySelector("button[type='submit']")
+
+	// 				if( buttonSubmit ) {
+	// 					buttonSubmit.disabled = true
+	// 				}
+
+	//     }
+	// });
 </script>
 
 <div class="d-none">
-  {scripts}
-	
+	{scripts}
+
 </div>
 
 <script>
-
-// alert();
+	// alert();
 	// const form_prueba = document.querySelectorAll("form");
 	// if (form_prueba) {
 	// 	Array.from(form_prueba).forEach(element => {
@@ -114,71 +126,71 @@
 	// 		})	
 	// 	});
 	// }
-	
-	
 
-	
-  $(function() {
-    //Money Euro
-    $('[data-mask]').inputmask()
 
-    let obj_dataTable = {
-      "responsive": true,
-      "autoWidth": false,
-      "language": {
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-          "first": "Primero",
-          "last": "Ultimo",
-          "next": "Siguiente",
-          "previous": "Anterior"
-        }
-      },
-      "buttons": ["csv", "excel"]
-    };
 
-    $("#table").DataTable(obj_dataTable).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
-    $(".table_data_tr").DataTable(obj_dataTable);
 
-    //Initialize Select2 Elements
-    $('.select2').select2()
+	$(function() {
+		//Money Euro
+		$('[data-mask]').inputmask()
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-  });
+		let obj_dataTable = {
+			"responsive": true,
+			"autoWidth": false,
+			"language": {
+				"decimal": "",
+				"emptyTable": "No hay información",
+				"info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+				"infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+				"infoFiltered": "(Filtrado de _MAX_ total entradas)",
+				"infoPostFix": "",
+				"thousands": ",",
+				"lengthMenu": "Mostrar _MENU_ Entradas",
+				"loadingRecords": "Cargando...",
+				"processing": "Procesando...",
+				"search": "Buscar:",
+				"zeroRecords": "Sin resultados encontrados",
+				"paginate": {
+					"first": "Primero",
+					"last": "Ultimo",
+					"next": "Siguiente",
+					"previous": "Anterior"
+				}
+			},
+			"buttons": ["csv", "excel"]
+		};
 
-  <?php if (isset($_SESSION["message"])) : ?>
-    const message = "<?php echo $_SESSION["message"]["message"] ?>";
+		$("#table").DataTable(obj_dataTable).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+		$(".table_data_tr").DataTable(obj_dataTable);
 
-    // toastr.<?php echo $_SESSION["message"]["type"] ?>(message);
+		//Initialize Select2 Elements
+		$('.select2').select2()
 
-    Swal.fire(
-      '<?php echo $_SESSION["message"]["type"] ?>',
-      message,
-      '<?php echo $_SESSION["message"]["type"] ?>'
-    )
+		//Initialize Select2 Elements
+		$('.select2bs4').select2({
+			theme: 'bootstrap4'
+		})
+	});
 
-  <?php
-    unset($_SESSION["message"]);
-  endif;
-  ?>
+	<?php if (isset($_SESSION["message"])) : ?>
+		const message = "<?php echo $_SESSION["message"]["message"] ?>";
 
-  var clipboard = new ClipboardJS('.copy');
+		// toastr.<?php echo $_SESSION["message"]["type"] ?>(message);
 
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+		Swal.fire(
+			'<?php echo $_SESSION["message"]["type"] ?>',
+			message,
+			'<?php echo $_SESSION["message"]["type"] ?>'
+		)
+
+	<?php
+		unset($_SESSION["message"]);
+	endif;
+	?>
+
+	var clipboard = new ClipboardJS('.copy');
+
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
