@@ -129,8 +129,10 @@ class Cliente_arabe_model extends CI_Model
 					empl.id,
 					empl.nombre,
 					car.nombre AS 'cartera',
+					car.id AS 'cartera_id',
 					SUM(ar_bon.bono) AS 'bono',
 					SUM(ar_bon.tabajo_extra) AS 'tabajo_extra',
+					NULL AS 'impuesto',
 					(SUM((
 						-- este subselect nos permite multiplicar la cantidad de servicios por el valor de este y sumarlo para encontrar el valor total de pago
 						SELECT
@@ -153,6 +155,7 @@ class Cliente_arabe_model extends CI_Model
 					)) + SUM(ar_bon.bono) + SUM(ar_bon.tabajo_extra) ) AS total_pago,
 					
 					-- seleccionamos un elemento nulo para posteriormente agregarle valores con una consulta 
+					NULL AS 'total_pago_con_impuesto',
 					NULL AS 'servicios'
 				FROM arabe_registros AS ar_reg
 				INNER JOIN arabe_bonos AS ar_bon ON ar_bon.arabe_registro_id = ar_reg.id 
@@ -178,6 +181,20 @@ class Cliente_arabe_model extends CI_Model
 						serv.precio_empleado,
 						serv.precio_empleado_mayor,
 						SUM(ar_ser.cantidad) AS 'cantidad_realizada',
+						-- saber cual si el empleado realizo la mayor cantidad de servicios para colocar el precio del empleado mayor
+						IF( 
+							SUM( serv.precio_empleado_mayor ) > 0 AND  
+							SUM((
+								-- este sub select nos permite ver cual fue la cantidad mayor realizada
+								SELECT 
+									max( ar_ser_sub.cantidad )
+								FROM arabe_servicios_cantidad AS ar_ser_sub 
+								WHERE ar_ser_sub.arabe_registro_id IN ($ids) AND ar_ser_sub.servicio_id = serv.id
+								
+							)) = SUM(ar_ser.cantidad)
+								, serv.precio_empleado_mayor
+								, serv.precio_empleado 
+						)AS 'precio_servicio', 
 						-- aqui estamos validando en caso de que el empleado alla la mayor cantidad de ordenes maxima se le pagara en comparacion con precio_empleado_mayor en caso de que el servicio cuente con esta
 						IF( 
 							SUM( serv.precio_empleado_mayor ) > 0 AND  
@@ -204,10 +221,28 @@ class Cliente_arabe_model extends CI_Model
 
 			$empleado_servicios =  $this->db->query($sql)->result();
 			$empleado->servicios = $empleado_servicios;
-		}
+			
+			$impuesto = 0;
+			
+			if ($empleado->cartera_id == 30) {
+				$impuesto_paypal = $empleado->total_pago - si_envio_paypal($empleado->total_pago);
+				$total_menos_paypal = $empleado->total_pago - $impuesto_paypal;
+				
+				$impuesto = ($total_menos_paypal * 0.1) + $impuesto_paypal;
+			}
+			
+			$empleado->impuesto = $impuesto;
+			$empleado->total_pago_con_impuesto = $empleado->total_pago - $impuesto;
 
+			
+		}
+		// echo json_encode($empleados_reporte);die();
 		return $empleados_reporte;
 	}
 
+	public function factura_data()
+	{
+		
+	}
 
 }

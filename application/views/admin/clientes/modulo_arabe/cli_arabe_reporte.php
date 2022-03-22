@@ -39,13 +39,14 @@
       				</div>
 
       				<div class="card-body">
-      					<table class="table text-center table-striped table-valign-middle">
+      					<table class="table w-100  text-center table-striped table-valign-middle">
       						<thead class="">
       							<tr>
 
       								<th>#</th>
-      								<th>ID</th>
+      								<!-- <th>ID</th> -->
       								<th>Empleado</th>
+      								<th>Cartera</th>
 
       								<?php foreach ($servicios as $servicio) : ?>
       									<th><?php echo $servicio->nombre ?></th>
@@ -54,12 +55,18 @@
       								<th>Bono</th>
       								<th>Trb. Extra</th>
       								<th>Sub Total</th>
+      								<th>Impuesto</th>
+      								<th>Total Pago</th>
+      								<th>#</th>
 
       							</tr>
       						</thead>
-      						<tbody>
+      						<tbody cla>
 
       							<?php foreach ($reporte as $i =>  $empleado) : ?>
+
+
+
       								<tr>
       									<td style="width: 20px;">
 
@@ -71,24 +78,23 @@
       									</td>
 
 
-      									<td style="width: 20px;"><?php echo $empleado->id ?></td>
+      									<!-- <td style="width: 20px;"><?php echo $empleado->id ?></td> -->
       									<td><?php echo $empleado->nombre ?></td>
+      									<td><?php echo $empleado->cartera ?></td>
       									<?php foreach ($empleado->servicios as $servicio) : ?>
       										<td>
       											<div class="row no-guetter">
-      												<!-- Header -->
-      												<!-- <div class="col-6">
-      													<strong>Cantidad</strong>
-      												</div>
-      												<div class="col-6">
-      													<strong>Pago</strong>
-      												</div> -->
 
-      												<!-- Bpdy -->
-      												<div class="col-6">
+      												<div class="col-4">
       													<?php echo $servicio->cantidad_realizada ?>
       												</div>
-      												<div class="col-6">
+      												<div class="col-4">
+      													<span class="text-muted">
+      														$<?php echo number_format($servicio->precio_servicio, 2) ?>
+
+      													</span>
+      												</div>
+      												<div class="col-4">
       													$<?php echo number_format($servicio->pago_por_servicio, 2) ?>
       												</div>
 
@@ -98,6 +104,18 @@
       									<td style="max-width: 180px;">$<?php echo number_format($empleado->bono, 2) ?></td>
       									<td style="max-width: 180px;">$<?php echo number_format($empleado->tabajo_extra, 2) ?></td>
       									<td style="max-width: 180px;">$<?php echo number_format($empleado->total_pago, 2) ?></td>
+      									<td style="max-width: 180px;">$<?php echo number_format($empleado->impuesto, 2); ?></td>
+      									<td style="max-width: 180px;">
+      										$<?php echo number_format($empleado->total_pago_con_impuesto, 2) ?>
+      									</td>
+      									<td>
+      										<?php if ($empleado->cartera_id == 30) : ?>
+      											<!-- <i class="fas fa-money-bill-1-wave fa-fw" style="color: var(--fa-navy);"></i> -->
+      											<!-- <i class="fas fa-money-bill-1 fa-fw" style="color: var(--fa-navy);"></i> -->
+      											<i class="fas fa-money-bill text-success" ></i>
+      										<?php endif ?>
+
+      									</td>
 
       								</tr>
       							<?php endforeach ?>
@@ -114,7 +132,7 @@
 
       								<th>--------</th>
       								<th>Total a pagar</th>
-      								<th>$<?php echo number_format( $precio_total_servicios, 2 ) ?></th>
+      								<th>$<?php echo number_format($precio_total_servicios, 2) ?></th>
       							</tr>
       						</tfoot>
       					</table>

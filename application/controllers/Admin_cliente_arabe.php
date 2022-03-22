@@ -14,6 +14,7 @@ class Admin_cliente_arabe  extends CI_Controller
 			"message_helper",
 			"upload_imgs_helper",
 			"text",
+			"impuestos_helper",
 			"manipular_archivos_helper",
 		]);
 

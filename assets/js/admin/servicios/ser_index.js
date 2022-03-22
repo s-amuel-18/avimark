@@ -1,17 +1,7 @@
 $(function() {
     // let form_eliminar_servicio = document.querySelectorAll(".form_eliminar_servicio");
 
-    $.validator.setDefaults({
-        submitHandler: function(e) {
-            e.submit();
-            let buttonSubmit = e.querySelector("button[type='submit']")
 
-            if (buttonSubmit) {
-                buttonSubmit.disabled = true
-            }
-
-        }
-    });
 
     // VALIDACION
     $('#form_servicio').validate({
@@ -103,7 +93,7 @@ $(function() {
         let precio_empleado_mayor = Number(form_servicio.precio_empleado_mayor.value);
         console.log(precio_empleado_mayor)
 
-        if ((precio_empleado >= precio_total) || (precio_empleado_mayor > 0 && (precio_empleado_mayor >= precio_total || precio_empleado >= precio_empleado_mayor))) {
+        if ((precio_empleado > precio_total) || (precio_empleado_mayor > 0 && (precio_empleado_mayor >= precio_total || precio_empleado >= precio_empleado_mayor))) {
             e.preventDefault();
 
             Swal.fire(
@@ -112,6 +102,14 @@ $(function() {
                 'warning'
             )
 
+        } else {
+            let buttonSubmit = e.target.querySelector("button[type='submit']")
+
+            if (buttonSubmit) {
+                buttonSubmit.disabled = true
+            }
+
         }
+
     })
 });
