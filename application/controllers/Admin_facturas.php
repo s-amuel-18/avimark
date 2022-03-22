@@ -240,7 +240,7 @@ class Admin_facturas  extends CI_Controller
 		$data["factura"] = $this->factura_model->get_all($ultimoId)[0];
 
 		$data["servicio_trabajo"] =     $data_insert["servicio_trabajo"];
-
+ 
 
 		$data["servicios"] = $this->factura_model->servicios_factura($ultimoId);
 		$data["servicios_total"] = $this->factura_model->total_servicios_factura($ultimoId);

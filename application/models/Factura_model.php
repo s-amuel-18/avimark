@@ -11,7 +11,7 @@ class Factura_model extends CI_Model
   public function get_all($id = null)
   {
     $where = $id ? "WHERE fac.id = " . $id : "";
-
+ 
     $sql = "SELECT
               fac.id,
               fac.numero_factura,

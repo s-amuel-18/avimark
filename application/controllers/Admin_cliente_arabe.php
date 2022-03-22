@@ -380,6 +380,7 @@ class Admin_cliente_arabe  extends CI_Controller
 		}
 
 		
+		
 	}
 
 	public function vista_reporte_actualizar($id = null)
