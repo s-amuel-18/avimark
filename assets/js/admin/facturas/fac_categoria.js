@@ -1,6 +1,7 @@
 $(function() {
 
     $(".check_categoria").on("change", (e) => {
+        // alert();
         $checkbox = e.target;
         $id = e.target.dataset.id;
         $nombre = e.target.dataset.nombre;
@@ -24,4 +25,34 @@ $(function() {
             }
         }
     })
+
+
+
+    $(".input_cantidad_categoria").on("keyup", (e) => {
+        count_cantidad_inputs("input_cantidad_categoria", "input_total");
+        count_cantidad_inputs("cantidad_sercios_inputs", "cantidad_servicio_total");
+        multiplicar_precio_por_cantidad("cantidad_sercios_inputs", "input_total_precios_all");
+    })
+
+    $(".input_cantidad_categoria").on("change", (e) => {
+        count_cantidad_inputs("input_cantidad_categoria", "input_total");
+        count_cantidad_inputs("cantidad_sercios_inputs", "cantidad_servicio_total");
+        multiplicar_precio_por_cantidad("cantidad_sercios_inputs", "input_total_precios_all");
+    })
+
+    $(".cantidad_sercios_inputs").on("keyup", (e) => {
+
+        count_cantidad_inputs("input_cantidad_categoria", "input_total");
+        count_cantidad_inputs("cantidad_sercios_inputs", "cantidad_servicio_total");
+        multiplicar_precio_por_cantidad("cantidad_sercios_inputs", "input_total_precios_all");
+    })
+
+    $(".cantidad_sercios_inputs").on("change", (e) => {
+
+
+        count_cantidad_inputs("input_cantidad_categoria", "input_total");
+        count_cantidad_inputs("cantidad_sercios_inputs", "cantidad_servicio_total");
+        multiplicar_precio_por_cantidad("cantidad_sercios_inputs", "input_total_precios_all");
+    })
+
 })

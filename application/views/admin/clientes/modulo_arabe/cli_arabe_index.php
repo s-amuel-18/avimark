@@ -180,7 +180,7 @@
 
       										<tr>
       											<td>
-													  
+
       												<div class="form-group clearfix m-0">
       													<div class="icheck-primary d-inline">
       														<input type="checkbox" class="input_reporte_check" value="<?php echo $reporte->id ?>" name="ids_reportes[<?php echo $reporte->id ?>]" id="check_reporte_<?php echo $reporte->id ?>">
@@ -192,15 +192,20 @@
 
       											<td><?php echo $reporte->id ?></td>
       											<td>
-      												<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
-      													<?php echo $reporte->reporte_facturado ?>
-      												</span>
+
+													<a onclick="return confirm('¿Realmente deseas <?php echo ($reporte->reporte_facturado_bool == 1) ? 'eliminarle': 'Agregarle' ?> la facturacion al reporte?')" href="<?php echo site_url("admin/cliente_arabe/actualizar_facturacion_reporte/". $reporte->id)?>">
+														<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
+															<?php echo $reporte->reporte_facturado ?>
+														</span>
+													</a>
+
+
       											</td>
 
       											<td>
-													  <span  data-fecha="<?php echo $reporte->timestamp_created_at ?>" class="moment_format"><?php echo $reporte->created_at ?></span>
-												  </td>
-												  
+      												<span data-fecha="<?php echo $reporte->timestamp_created_at ?>" class="moment_format"><?php echo $reporte->created_at ?></span>
+      											</td>
+
       											<td style="width: 150px;">
       												<form action="<?php echo site_url("admin/cliente_arabe/eliminar_reporte/" . $reporte->id) ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
       													<input type="hidden" value="<?php echo $reporte->id ?>" name="id">

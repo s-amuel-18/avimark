@@ -39,7 +39,8 @@ function insert_template_item(data_obj) {
     return $template;
 }
 
-function insertar_template(obj_data) {
+function insertar_template(obj_data = null) {
+
     $obj_data = obj_data;
 
     $arr_categorias.push($obj_data);
@@ -84,7 +85,6 @@ function insertar_template(obj_data) {
     })
 
     $(".cantidad_sercios_inputs").on("keyup", (e) => {
-
 
         count_cantidad_inputs("input_cantidad_categoria", "input_total");
         count_cantidad_inputs("cantidad_sercios_inputs", "cantidad_servicio_total");

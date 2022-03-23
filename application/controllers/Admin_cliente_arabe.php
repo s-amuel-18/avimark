@@ -30,6 +30,7 @@ class Admin_cliente_arabe  extends CI_Controller
 
 		$this->load->model([
 			"cliente_model",
+			"cartera_model",
 			"cliente_arabe_model",
 		]);
 
@@ -379,8 +380,78 @@ class Admin_cliente_arabe  extends CI_Controller
 			}
 		}
 
-		
-		
+		$this->cliente_arabe_model->facturar_reportes($ids_reportes);
+
+		$informacion_interna = $this->db->get("informacion_interna")->row();
+		$data["informacion_interna"] = $informacion_interna;
+
+		$carteras = $this->cartera_model->get_all();
+		$data["carteras"] = $carteras;
+
+		$factura = $this->cliente_arabe_model->clinte_asociado();
+		$data["factura"] = $factura;
+
+		$servicios = $this->cliente_arabe_model->servicios_factura($ids_reportes);
+		$data["servicios"] = $servicios;
+
+		$servicios_total = $this->cliente_arabe_model->servicios_total_factura($ids_reportes);
+		$data["servicios_total"] = $servicios_total;
+
+
+		$id_categorias = [];
+
+		foreach ($data["servicios"] as $servicio) {
+			array_push($id_categorias, $servicio->categoria_id);
+		}
+
+		$data["id_categorias"] = $id_categorias;
+
+		$servicios_nuevos = $this->db->select(["id", "nombre", "precio_total"])->get("servicios")->result();
+		$data["servicios_nuevos"] = $servicios_nuevos;
+
+		$clientes = $this->db->get("clientes")->result();
+		$data["clientes"] = $clientes;
+
+		$data["titulo"] = "Generar Factura";
+
+		$view["body"] = $this->load->view("admin/facturas/fac_crear", $data, true);
+		$view["scripts"] =  archivos_js([
+			base_url() . "assets/plugins/summernote/summernote-bs4.min.js",
+			base_url() . "assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js",
+			base_url("assets/js/admin/facturas/fac_functions.js"),
+			base_url("assets/js/admin/facturas/fac_crear.js"),
+			base_url("assets/js/admin/facturas/fac_categoria.js"),
+		]);
+
+		$this->parser->parse("admin/template/body", $view);
+	}
+
+	public function actualizar_facturacion_reporte($id_reporte = null)
+	{
+		if (!$id_reporte) {
+			show_404();
+			return false;
+		}
+
+		$exist_reporte = $this->db->get_where("arabe_registros", ["id" => $id_reporte])->row();
+
+		$facturado = $exist_reporte->reporte_facturado == 1 ?  0: 1;
+
+		if (!$exist_reporte) {
+			show_404();
+			return false;
+		}
+
+		$this->db->where("id",  $exist_reporte->id);
+		$this->db->update("arabe_registros", ["reporte_facturado" => $facturado]);
+
+		message(
+			"El reporte se ha actualizado correctamente.",
+			"success",
+			"success",
+		);
+
+		redirect("admin_cliente_arabe");
 	}
 
 	public function vista_reporte_actualizar($id = null)

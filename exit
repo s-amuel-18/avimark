@@ -1,0 +1,30 @@
+[33m3995982[m[33m ([m[1;36mHEAD -> [m[1;32mmodulo_arabe[m[33m)[m Archivos guardados del commit anterior
+[33mda4747a[m Se termino el cuadro estadistico de los reportes, se corrigieron errores en el modulo de servicios, se agrego el campo de impuesto y total al cuadro estadistico y actualmente se encuentra en proceso el modulo de facturacion de los reportes
+[33mbbad51c[m[33m ([m[1;31morigin/modulo_arabe[m[33m)[m Se comenzo el modulo de facturacion del arabe
+[33md3361df[m Se realizo la validacion del modulo de creacion/actualizacion del modulo de reportes_arabe
+[33mfc0f84a[m Se termino el crud completo del modulo del arabe, falta testeo
+[33mfb974ea[m Se adelanto el modulo de reportes_arabe de manera que ya es capas de registrar los servicios, empleados y el cliente del modulo en su configuracion, ya es totalmente configurable, se termino el modulo de creacion de reportes de manera que ya se pueden crear los reportes semanales correctamente en la base de datos, actualmente se encuantra en proceso el modulo de la vista del reporte seleccionado, la consulta sql ya funciona correctamente.
+[33m4047772[m se avanzo con el modulo del arabe, se hicieron las respectivas validaciones para la configuracion, se crearon todas las tablas en la base de datos que se requieren para el modulo del arabe y actualmente se encuantra en construccion el formulario de reportes semanales.
+[33md320c28[m Se comenzo el modulo del arabe
+[33mb7272be[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m Merge branch 'modulo_arabe'
+[33m5222bc6[m Se realizo correctamente el modulo de EMPLEADOS
+[33m31adde9[m Se comenzo a maquetar el modulo del arabe
+[33m1e5908b[m primer commit rama arabe, se crearan los archivos
+[33md643881[m se unieron las dos ramas
+[33m0f8b81d[m se corrigieron errores en el controlador de factura, cuando no habian servicios igual mostraba la vista del formulario de factura, CORREGIDO
+[33m79ba684[m Se implemento el modulo de servicios con el modulo de facturas, primera en trega, falta el testeo
+[33ma9cd885[m Se agregaron los servicios_nuevo en el controlador  de fatura
+[33ma9dc367[m Se agregaron los servicios en el controlador de la vista de facturas
+[33m7a6b326[m First commit servicio
+[33m2a4ad1d[m Se creo la rama servicio_factura
+[33ma8de241[m Se agrego el modulo de servicios y se modifico el aside.
+[33m56415e5[m Se planteo la forma en la que ira estructurado el modulo del ARABE
+[33m6142c3d[m se agrego client a la factura
+[33mafc72fb[m se cambio DATA por CLIENT en la factura.
+[33m9823fea[m se realizo el cambio solicitado por armando de mostrar la factura en una pestaña diferente del navegador. se le agrego un targer='_blanck' al form de factura.
+[33mc0945a2[m DS
+[33m5886a01[m dsad
+[33m9d208c3[m dsad
+[33m57a14fa[m dsa
+[33me02040a[m se agregaron los assets
+[33m43f1753[m first

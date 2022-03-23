@@ -112,6 +112,7 @@ $route['admin/cliente_arabe/crear_configuracion']["post"] = 'Admin_cliente_arabe
 $route['admin/cliente_arabe/crear_reporte']["post"] = 'Admin_cliente_arabe/crear_reporte';
 $route['admin/cliente_arabe/actualizar_reporte/(.+)']["post"] = 'Admin_cliente_arabe/actualizar_reporte/$1';
 $route['admin/cliente_arabe/eliminar_reporte/(.+)']["post"] = 'Admin_cliente_arabe/eliminar_reporte/$1';
+$route['admin/cliente_arabe/actualizar_facturacion_reporte/(.+)']["get"] = 'Admin_cliente_arabe/actualizar_facturacion_reporte/$1';
 
 $route['default_controller'] = 'admin_dashboard';
 $route['404_override'] = '';

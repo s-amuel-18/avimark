@@ -117,7 +117,7 @@ class Cliente_arabe_model extends CI_Model
 				   created_at AS timestamp_created_at,
 				   DATE_FORMAT(created_at, '%d/%m/%Y') AS created_at
 				FROM arabe_registros AS ar_reg
-				ORDER BY timestamp_created_at DESC, reporte_facturado DESC 
+				ORDER BY reporte_facturado DESC, timestamp_created_at DESC 
 				$limit_sql";
 
 		return $this->db->query($sql)->result();
@@ -221,28 +221,67 @@ class Cliente_arabe_model extends CI_Model
 
 			$empleado_servicios =  $this->db->query($sql)->result();
 			$empleado->servicios = $empleado_servicios;
-			
+
 			$impuesto = 0;
-			
+
 			if ($empleado->cartera_id == 30) {
 				$impuesto_paypal = $empleado->total_pago - si_envio_paypal($empleado->total_pago);
 				$total_menos_paypal = $empleado->total_pago - $impuesto_paypal;
-				
+
 				$impuesto = ($total_menos_paypal * 0.1) + $impuesto_paypal;
 			}
-			
+
 			$empleado->impuesto = $impuesto;
 			$empleado->total_pago_con_impuesto = $empleado->total_pago - $impuesto;
-
-			
 		}
 		// echo json_encode($empleados_reporte);die();
 		return $empleados_reporte;
 	}
 
-	public function factura_data()
+	public function clinte_asociado()
 	{
-		
+		$sql = "SELECT 
+					cliente_id AS id_cliente
+				FROM modulo_arabe";
+		return $this->db->query($sql)->row();
 	}
 
+	public function servicios_factura($ids)
+	{
+		$sql = "SELECT 
+					serv.nombre AS nombre_categoria,
+					serv.id AS categoria_id,
+					serv.precio_total AS precio,
+					SUM(ar_ser.cantidad) AS cantidad,
+					( SUM(ar_ser.cantidad) * serv.precio_total ) AS total
+				FROM servicios AS serv
+				INNER JOIN arabe_servicios_cantidad AS ar_ser ON ar_ser.servicio_id = serv.id
+				WHERE ar_ser.arabe_registro_id IN ( $ids )
+				GROUP BY serv.id";
+  
+	  return $this->db->query($sql)->result();
+	}
+
+	public function servicios_total_factura($ids)
+	{
+		$sql = "SELECT 
+					SUM(ar_ser.cantidad) AS total_cantidad,
+					SUM(serv.precio_total * ar_ser.cantidad) AS total_pago
+				FROM servicios AS serv
+				INNER JOIN arabe_servicios_cantidad AS ar_ser ON ar_ser.servicio_id = serv.id
+				WHERE ar_ser.arabe_registro_id IN ( $ids )
+				";
+  
+	  return $this->db->query($sql)->row();
+	}
+	
+	
+	public function facturar_reportes($ids)
+	{
+		$sql = "UPDATE arabe_registros 
+				SET reporte_facturado = 1
+				WHERE id IN ($ids)";
+		return $this->db->query($sql);
+	}
+	
 }

@@ -102,7 +102,7 @@
 
                     <?php foreach ($carteras as $cartera) : ?>
 
-                      <option <?php echo (isset($factura) and $factura->id_cartera == $cartera->id) ? "selected" : "" ?> value="<?php echo $cartera->id ?>"><?php echo $cartera->nombre ?></option>
+                      <option <?php echo (( isset($factura) AND isset($factura->id_cartera) ) and $factura->id_cartera == $cartera->id) ? "selected" : "" ?> value="<?php echo $cartera->id ?>"><?php echo $cartera->nombre ?></option>
 
                     <?php endforeach ?>
 
@@ -131,7 +131,7 @@
                       </div>
                       <?php else : ?>
                         
-                      <div class="text-muted">Guardado Como Plantilla</div>
+                      <!-- <div class="text-muted">Guardado Como Plantilla</div> -->
 
                     <?php endif ?>
                   </div>
@@ -234,7 +234,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                           </div>
-                          <input disabled id="input_total_precios_all" value="<?php echo isset($servicios_total) ? $servicios_total->total_pago : "0" ?>" class="form-control" style="background: #4d4d4d;" type="number" min="1">
+                          <input disabled id="input_total_precios_all" value="<?php echo isset($servicios_total) ? number_format($servicios_total->total_pago, 2) : "0" ?>" class="form-control" style="background: #4d4d4d;" type="number" min="1">
                         </div>
                       </th>
                       <th></th>

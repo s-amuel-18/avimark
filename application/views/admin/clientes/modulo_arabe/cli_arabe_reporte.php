@@ -34,7 +34,7 @@
       					<h3 class="card-title">Reporte</h3>
 
       					<div class="card-tools">
-      						<a href="<?php echo site_url("admin_cliente_arabe/facturar_reportes?" . $url_parametros) ?>" class="btn btn-primary btn-sm">Facturar</a>
+      						<a onclick="return confirm('¿Realmente deseas facturar este registro?')" href="<?php echo site_url("admin_cliente_arabe/facturar_reportes?" . $url_parametros) ?>" class="btn btn-primary btn-sm">Facturar</a>
       					</div>
       				</div>
 
