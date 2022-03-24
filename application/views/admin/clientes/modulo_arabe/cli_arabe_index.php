@@ -162,7 +162,7 @@
       					<?php if (count($reportes) > 0) : ?>
 
       						<form action="<?php echo site_url("admin_cliente_arabe/vista_reporte/") ?>" id="form_reportes_select" method="GET">
-
+							  <form></form>
       							<table class="table  table-striped table-valign-middle">
       								<thead class="">
       									<tr>
@@ -193,11 +193,11 @@
       											<td><?php echo $reporte->id ?></td>
       											<td>
 
-													<a onclick="return confirm('¿Realmente deseas <?php echo ($reporte->reporte_facturado_bool == 1) ? 'eliminarle': 'Agregarle' ?> la facturacion al reporte?')" href="<?php echo site_url("admin/cliente_arabe/actualizar_facturacion_reporte/". $reporte->id)?>">
-														<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
-															<?php echo $reporte->reporte_facturado ?>
-														</span>
-													</a>
+      												<a onclick="return confirm('¿Realmente deseas <?php echo ($reporte->reporte_facturado_bool == 1) ? 'eliminarle' : 'Agregarle' ?> la facturacion al reporte?')" href="<?php echo site_url("admin/cliente_arabe/actualizar_facturacion_reporte/" . $reporte->id) ?>">
+      													<span class="badge badge-<?php echo $reporte->reporte_facturado_color ?>">
+      														<?php echo $reporte->reporte_facturado ?>
+      													</span>
+      												</a>
 
 
       											</td>
@@ -207,6 +207,7 @@
       											</td>
 
       											<td style="width: 150px;">
+
       												<form action="<?php echo site_url("admin/cliente_arabe/eliminar_reporte/" . $reporte->id) ?>" method="POST" onsubmit="return confirm('Realmente deseas eliminar el reporte ?')">
       													<input type="hidden" value="<?php echo $reporte->id ?>" name="id">
       													<?php if ($this->session->userdata("perfil") == "administrador" or $this->session->userdata("perfil") == "editor") : ?>
