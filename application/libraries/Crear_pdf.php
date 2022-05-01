@@ -25,9 +25,12 @@ class Crear_pdf
 
 	public function factura($data = [])
 	{
-		// $data = $_SESSION["factura_data"];
+		// en caso de que exista la variable de sesion servicio_extre 
+		$monto_extra = isset( $_SESSION["servicio_extre"] ) ? count($_SESSION["servicio_extre"]) + 1: 0;
 
-		$relleno_tablas = 11 - count($data["servicios"]);
+		// dd($monto_extra);
+		
+		$relleno_tablas = 11 - count($data["servicios"]) - $monto_extra;
 
 		for ($i = 0; $i < $relleno_tablas; $i++) {
 			array_push($data["servicios"], null);

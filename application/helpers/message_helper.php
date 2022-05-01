@@ -12,3 +12,8 @@ function message($message, $type, $color, $sesion = true) {
   
   return $message;
 }
+
+function dd($data)
+{
+	echo json_encode($data);die();
+}

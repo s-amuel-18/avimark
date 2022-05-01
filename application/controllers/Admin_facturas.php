@@ -118,6 +118,7 @@ class Admin_facturas  extends CI_Controller
 			base_url("assets/js/admin/facturas/fac_functions.js"),
 			base_url("assets/js/admin/facturas/fac_crear.js"),
 			base_url("assets/js/admin/facturas/fac_categoria.js"),
+			base_url("assets/js/admin/facturas/fac_index.js"),
 			// base_url("assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"),
 		]);
 		$this->parser->parse("admin/template/body", $view);

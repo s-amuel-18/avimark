@@ -1,47 +1,47 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>Blank Page</h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Blank Page</li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
+      	<div class="container-fluid">
+      		<div class="row mb-2">
+      			<div class="col-sm-6">
+      				<h1>Inicio</h1>
+      			</div>
+      		</div>
+      	</div><!-- /.container-fluid -->
       </section>
 
       <!-- Main content -->
       <section class="content">
 
-        <!-- Default box -->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Title</h3>
+      	<div class="row">
+      		<div class="col-md-3">
+      			<div class="small-box bg-success">
+      				<div class="inner">
+      					<h3><?php echo $users?></h3>
+      					<h5>Usuarios Registrados</h5>
+      				</div>
+      				<div class="icon"><i class="fas fa-users"></i></div> <a href="contact-email/" class="small-box-footer">
 
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <div class="card-body">
-            Start creating your amazing application!
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            Footer
-          </div>
-          <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
+      					Ver Usuarios
+
+      					<i class="fas fa-lg fa-arrow-circle-right"></i></a>
+      				<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
+      			</div>
+      		</div>
+      		<div class="col-md-3">
+      			<div class="small-box bg-info">
+      				<div class="inner">
+      					<h3><?php echo $visitas->num_rows()?></h3>
+      					<h5>Vistas Semanal</h5>
+      				</div>
+      				<div class="icon"><i class="fas fa-user"></i></div> <a  class="small-box-footer">
+
+								Vistas
+      					<!-- <i class="fas fa-lg fa-arrow-circle-right"></i></a> -->
+      				<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
+      			</div>
+      		</div>
+
+      	</div>
 
       </section>
       <!-- /.content -->

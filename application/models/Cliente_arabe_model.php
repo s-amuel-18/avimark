@@ -284,4 +284,16 @@ class Cliente_arabe_model extends CI_Model
 		return $this->db->query($sql);
 	}
 	
+	public function reporte_total_bonos($ids)
+	{
+		$sql = "SELECT
+					SUM(ar_bo.bono) AS total_bonos,
+					SUM(ar_bo.tabajo_extra) AS total_trb_extra,
+					SUM(ar_bo.tabajo_extra) + SUM(ar_bo.bono) AS suma_total
+				FROM arabe_registros AS ar_r
+				INNER JOIN arabe_bonos AS ar_bo ON ar_r.id = ar_bo.arabe_registro_id
+				WHERE  ar_r.id IN ({$ids})";
+
+		return $this->db->query($sql)->row();
+	}
 }

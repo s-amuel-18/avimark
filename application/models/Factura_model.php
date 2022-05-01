@@ -75,9 +75,9 @@ class Factura_model extends CI_Model
             WHERE pre.factura_id = {$factura_id}
 
             ";
-// var_dump($sql);die();
     return $this->db->query($sql)->row();
   }
+	
 }
 
 

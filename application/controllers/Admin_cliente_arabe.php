@@ -133,6 +133,7 @@ class Admin_cliente_arabe  extends CI_Controller
 			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_config.js"),
 
 		]);
+
 		$this->parser->parse("admin/template/body", $view);
 	}
 
@@ -394,6 +395,24 @@ class Admin_cliente_arabe  extends CI_Controller
 		$servicios = $this->cliente_arabe_model->servicios_factura($ids_reportes);
 		$data["servicios"] = $servicios;
 
+		$bonos_totales = $this->cliente_arabe_model->reporte_total_bonos($ids_reportes);
+		// dd($bonos_totales);
+		$_SESSION["servicio_extre"] = [
+			"servicios" => [
+				["servicio" => "bonos", "precio" => $bonos_totales->total_bonos],
+				["servicio" => "salary", "precio" => $bonos_totales->total_trb_extra],
+			],
+			"suma_total" => $bonos_totales->suma_total 
+		];
+
+		// echo json_encode($_SESSION["servicio_extre"]["servicios"]);die();
+		// var_dump($_SESSION["servicio_extre"]);die();
+
+		// dd($_SESSION["servicio_extre"]["suma_total"]);
+
+
+
+
 		$servicios_total = $this->cliente_arabe_model->servicios_total_factura($ids_reportes);
 		$data["servicios_total"] = $servicios_total;
 
@@ -421,6 +440,7 @@ class Admin_cliente_arabe  extends CI_Controller
 			base_url("assets/js/admin/facturas/fac_functions.js"),
 			base_url("assets/js/admin/facturas/fac_crear.js"),
 			base_url("assets/js/admin/facturas/fac_categoria.js"),
+			base_url("assets/js/admin/facturas/fac_index.js"),
 		]);
 
 		$this->parser->parse("admin/template/body", $view);
@@ -435,7 +455,7 @@ class Admin_cliente_arabe  extends CI_Controller
 
 		$exist_reporte = $this->db->get_where("arabe_registros", ["id" => $id_reporte])->row();
 
-		$facturado = $exist_reporte->reporte_facturado == 1 ?  0: 1;
+		$facturado = $exist_reporte->reporte_facturado == 1 ?  0 : 1;
 
 		if (!$exist_reporte) {
 			show_404();

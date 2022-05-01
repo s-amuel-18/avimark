@@ -22,14 +22,23 @@ class Admin_dashboard  extends CI_Controller
     ]);
 
     $this->load->model([
-      "email_contacto_model"
+      "email_contacto_model",
+      "vistas_model"
     ]);
 
   }
 
   public function index()
   {
-    $view["body"] = $this->load->view("admin/dashboard/dash_index", [], true);
+
+		$ip_address_user = $_SERVER["REMOTE_ADDR"];
+		$visitas = $this->vistas_model->vistas_semana();
+		$data["visitas"] = $visitas ;
+
+		$users = $this->db->get("usuarios")->num_rows();
+		$data["users"] = $users;
+		
+    $view["body"] = $this->load->view("admin/dashboard/dash_index", $data, true);
     $this->parser->parse("admin/template/body", $view);
   }
 }

@@ -133,8 +133,10 @@ function count_cantidad_inputs(elements_input, element_total_input) {
 
 
 function multiplicar_precio_por_cantidad(cantidad_element, precio_total_element) {
+    // alert();
     $camtidades = document.querySelectorAll("." + cantidad_element);
     $precio_total = document.getElementById(precio_total_element);
+    $precio_total_por_categoria = document.querySelectorAll(".precio_total_servicio");
 
     $total = 0;
 
@@ -147,9 +149,14 @@ function multiplicar_precio_por_cantidad(cantidad_element, precio_total_element)
         $multiplicacion = ($cantidad_por_id * $precio_por_id);
         $total_precio_por_id.value = $multiplicacion;
 
-        $total += $multiplicacion;
+
+        // $total += $multiplicacion;
 
     })
+
+    Array.from($precio_total_por_categoria).forEach(el => {
+        $total += Number(el.value);
+    });
 
     $precio_total.setAttribute("value", $total);
 }
