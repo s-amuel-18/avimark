@@ -765,6 +765,14 @@ screen and (-ms-high-contrast: none) {
     /* required for the fade animation */
 }
 
+.icon-upwork {
+    width: 2em;
+    margin-left: 0.3rem;
+    font-size: 0.65rem;
+    border-radius: 3rem;
+    color: black;
+}
+
 @keyframes fadeDropdown {
     0% {
         opacity: 0;
@@ -966,6 +974,20 @@ screen and (-ms-high-contrast: none) {
 /****************************/
 
 
+/*     logos     */
+
+
+/****************************/
+
+.logos-d {
+    width: 156px;
+    height: 26px;
+}
+
+
+/****************************/
+
+
 /*     05. Registration     */
 
 
@@ -1045,6 +1067,10 @@ screen and (-ms-high-contrast: none) {
 .slider-1 .slider-container {
     margin-right: 1.5rem;
     margin-left: 1.5rem;
+}
+
+.change-color {
+    opacity: 0.9;
 }
 
 
@@ -1374,6 +1400,16 @@ screen and (-ms-high-contrast: none) {
 
 /*************************/
 
+.center-cards {
+    text-align: center;
+    justify-content: space-between;
+}
+
+.margin-card {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .cards {
     padding-top: 3rem;
     padding-bottom: 2rem;
@@ -1390,10 +1426,10 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cards .card {
-    max-width: 21rem;
-    margin-right: auto;
-    margin-bottom: 4rem;
-    margin-left: auto;
+    max-width: 31rem;
+    /* margin-right: 5rem;
+    margin-bottom: 1rem;
+    margin-left: 5rem; */
     padding: 3rem 1.625rem 1.75rem 1.625rem;
     border: none;
     background-color: #fff;
@@ -1411,7 +1447,8 @@ screen and (-ms-high-contrast: none) {
 }
 
 .cards .fas,
-.cards .far {
+.cards .far,
+.cards i {
     color: #fea621;
     font-size: 3rem;
     line-height: 6rem;
@@ -1716,11 +1753,12 @@ screen and (-ms-high-contrast: none) {
     margin-left: 0.625rem;
 }
 
-.footer .fab {
-    margin-bottom: 0.75rem;
+.footer .fab,
+i {
+    margin-top: 0.14rem;
     margin-right: 1rem;
     color: #ccc;
-    font-size: 1.25rem;
+    font-size: 1.10rem;
     transition: all 0.2s ease;
 }
 

@@ -1,104 +1,75 @@
-
-	<!-- Footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="footer-col first">
-						<h5>About Corso</h5>
-						<p class="p-small">We're passionate about teaching people how to do better SEO for their online presence</p>
-					</div>
-				</div>
-				<!-- end of col -->
-				<div class="col-md-3">
-					<div class="footer-col second">
-						<h5>Links</h5>
-						<ul class="list-unstyled li-space-lg p-small">
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="terms-conditions.html">Terms & Conditions</a></div>
-							</li>
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="privacy-policy.html">Privacy Policy</a></div>
-							</li>
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="article-details.html">Article Details</a></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- end of col -->
-				<div class="col-md-3">
-					<div class="footer-col third">
-						<h5>Links</h5>
-						<ul class="list-unstyled li-space-lg p-small">
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="article-details.html">Article Details</a></div>
-							</li>
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="terms-conditions.html">Terms & Conditions</a></div>
-							</li>
-							<li class="media">
-								<i class="fas fa-square"></i>
-								<div class="media-body"><a href="privacy-policy.html">Privacy Policy</a></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- end of col -->
-				<div class="col-md-3">
-					<div class="footer-col fourth">
-						<h5>Social Media</h5>
-						<p class="p-small">For news & updates follow us</p>
-						<a href="#your-link">
-							<i class="fab fa-facebook-f"></i>
-						</a>
-						<a href="#your-link">
-							<i class="fab fa-twitter"></i>
-						</a>
-						<a href="#your-link">
-							<i class="fab fa-pinterest-p"></i>
-						</a>
-						<a href="#your-link">
-							<i class="fab fa-instagram"></i>
-						</a>
-						<a href="#your-link">
-							<i class="fab fa-linkedin-in"></i>
-						</a>
-						<a href="#your-link">
-							<i class="fab fa-youtube"></i>
-						</a>
-					</div>
-				</div>
-				<!-- end of col -->
-			</div>
-			<!-- end of row -->
-		</div>
-		<!-- end of container -->
-	</div>
-	<!-- end of footer -->
-	<!-- end of footer -->
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-col first">
+                        <img src="<?php echo base_url("assets/front-landing/")?>images/logo-avi-white.svg" alt="logo footer">
+                    </div>
+                </div>
+                <!-- end of col -->
+                <div class="col-md-3">
+                    <h5>Sobre Avimark</h5>
+                    <p class="p-small">Nos apasiona enseñar a las personas nuestros servicios en línea.</p>
+                </div>
+                <!-- end of col -->
+                <div class="col-md-3">
+                </div>
+                <!-- end of col -->
+                <div class="col-md-3">
+                    <div class="footer-col fourth">
+                        <h5>Redes Sociales</h5>
+                        <p class="p-small">Para noticias y actualizaciones síguenos</p>
+                        <a href="#your-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <!-- <a href="#your-link">
+                            <i class="fab fa-twitter"></i>
+                        </a> -->
+                        <!-- <a href="#your-link">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a> -->
+                        <a href="#your-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <!-- <a href="#your-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a> -->
+                        <!-- <a href="#your-link">
+                            <i class="fab fa-youtube"></i>
+                        </a> -->
+                        <a href="#your-link">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- end of col -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container -->
+    </div>
+    <!-- end of footer -->
+    <!-- end of footer -->
 
 
-	<!-- Copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<p class="p-small">Copyright © 2020 <a href="https://inovatik.com">Inovatik</a> - All rights reserved</p>
-				</div>
-				<!-- end of col -->
-			</div>
-			<!-- enf of row -->
-		</div>
-		<!-- end of container -->
-	</div>
-	<!-- end of copyright -->
-	<!-- end of copyright -->
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2020 <a href="https://inovatik.com">Inovatik</a> - All rights
+                        reserved
+                    </p>
+                </div>
+                <!-- end of col -->
+            </div>
+            <!-- enf of row -->
+        </div>
+        <!-- end of container -->
+    </div>
+    <!-- end of copyright -->
+    <!-- end of copyright -->
 
 
 	<!-- Scripts -->
@@ -120,3 +91,5 @@
 	<!-- Validator.js - Bootstrap plugin that validates forms -->
 	<script src="<?php echo base_url("assets/front-landing/")?>js/scripts.js"></script>
 	<!-- Custom scripts -->
+
+	<script src="https://kit.fontawesome.com/659d46c642.js" crossorigin="anonymous"></script>
