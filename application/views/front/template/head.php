@@ -33,5 +33,5 @@
 	<link href="<?php echo base_url("assets/front-landing/")?>css/styles.css" rel="stylesheet">
 
 	<!-- Favicon  -->
-	<link rel="icon" href="images/favicon.png">
+	<link rel="icon" href="<?php echo base_url("assets/front-landing/")?>images/favicon.svg">
 </head>
