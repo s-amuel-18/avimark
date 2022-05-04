@@ -13,7 +13,7 @@
 	<!-- website link -->
 	<meta property="og:title" content="Avimark Studio" />
 	<!-- title shown in the actual shared post -->
-	<meta property="og:description" content="Descripcion de Avimark Studio" />
+	<meta property="og:description" content="Expertos en Edición de Video, Diseño Gráfico, Diseño Web, Creación y diseño de Posts de redes sociales (TikTok, Facebook, Instagram, etc.), Redacción de contenido, Animación, Traducción InglésEspañol, Research, y más. " />
 	<!-- description shown in the actual shared post -->
 	<meta property="og:image" content="" />
 	<!-- image link, make sure it's jpg -->
@@ -26,12 +26,12 @@
 
 	<!-- Styles -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700,700i&display=swap" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front-landing/")?>css/bootstrap.css" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front-landing/")?>css/fontawesome-all.css" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front-landing/")?>css/swiper.css" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front-landing/")?>css/magnific-popup.css" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front-landing/")?>css/styles.css" rel="stylesheet">
+	<link href="<?php echo base_url("assets/front-landing/") ?>css/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo base_url("assets/front-landing/") ?>css/fontawesome-all.css" rel="stylesheet">
+	<link href="<?php echo base_url("assets/front-landing/") ?>css/swiper.css" rel="stylesheet">
+	<link href="<?php echo base_url("assets/front-landing/") ?>css/magnific-popup.css" rel="stylesheet">
+	<link href="<?php echo base_url("assets/front-landing/") ?>css/styles.css" rel="stylesheet">
 
 	<!-- Favicon  -->
-	<link rel="icon" href="<?php echo base_url("assets/front-landing/")?>images/favicon.svg">
+	<link rel="icon" href="<?php echo base_url("assets/front-landing/") ?>images/favicon.svg">
 </head>
