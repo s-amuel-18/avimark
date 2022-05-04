@@ -8,10 +8,10 @@ class Admin_dashboard  extends CI_Controller
 
     $this->load->helper([
       "url",
-      "cargar_archivo_helper",
+
       "message_helper",
-      "upload_imgs_helper",
-      "manipular_archivos_helper",
+
+
     ]);
 
     $this->load->library([
@@ -22,7 +22,6 @@ class Admin_dashboard  extends CI_Controller
     ]);
 
     $this->load->model([
-      "email_contacto_model",
       "vistas_model"
     ]);
 
@@ -30,8 +29,6 @@ class Admin_dashboard  extends CI_Controller
 
   public function index()
   {
-
-		$ip_address_user = $_SERVER["REMOTE_ADDR"];
 		$visitas = $this->vistas_model->vistas_semana();
 		$data["visitas"] = $visitas ;
 

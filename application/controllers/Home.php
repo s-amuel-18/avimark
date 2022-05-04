@@ -17,8 +17,7 @@ class Home  extends CI_Controller
 
     $this->load->library([
       "parser",
-      "form_validation",
-      "session"
+      
     ]);
   }
 

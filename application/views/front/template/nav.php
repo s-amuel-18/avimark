@@ -38,6 +38,11 @@
                     <a class="nav-link page-scroll" href="#contact">Contactanos</span></a>
                 </li>
 
+                <!-- Loggin-->
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="<?php echo site_url("auth")?>">Iniciar Sesion</span></a>
+                </li>
+
             </ul>
 
 			<span class="nav-item social-icons">
