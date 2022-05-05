@@ -208,7 +208,7 @@
 
 
 
-										<?php if ($_SESSION["servicio_extre"]) : ?>
+										<?php if (isset($_SESSION["servicio_extre"])) : ?>
 
 											<?php foreach ($_SESSION["servicio_extre"]["servicios"] as $servicio) : ?>
 

@@ -133,20 +133,34 @@ $fechas_actual = date_format($date, "d/m/Y");
 					<?php foreach ($servicios as $key => $servicio) : ?>
 						<tr>
 							<td><?php echo $key + 1  ?></td>
-							<td><?php echo isset($servicio->nombre_categoria) ?  $servicio->nombre_categoria : "" ?></td>
-							<td><?php echo isset($servicio->precio)  ? "$" . number_format($servicio->precio, 2) : "" ?></td>
-							<td><?php echo isset($servicio->cantidad) ?  $servicio->cantidad : "" ?></td>
-							<td><?php echo isset($servicio->total) ? "$" . number_format($servicio->total, 2) : "" ?></td>
+							<td><?php echo isset($servicio["nombre_categoria"]) ?  $servicio["nombre_categoria"]: "" ?></td>
+							<td><?php echo isset($servicio["precio"])  ? "$" . number_format($servicio["precio"], 2) : "" ?></td>
+							<td><?php echo isset($servicio["cantidad"]) ?  $servicio["cantidad"] : "" ?></td>
+							<td><?php echo isset($servicio["total"]) ? "$" . number_format($servicio["total"], 2) : "" ?></td>
 						</tr>
 					<?php endforeach ?>
+
+					<!-- <?php if (isset($_SESSION["servicio_extre"])) : ?>
+
+						<?php foreach ($_SESSION["servicio_extre"]["servicios"] as $serv_extr) : ?>
+
+							<tr>
+								<td></td>
+								<td><?php echo $serv_extr["servicio"] ?></td>
+								<td>$<?php echo number_format($serv_extr["precio"], 2) ?></td>
+								<td>1</td>
+								<td>$<?php echo number_format($serv_extr["precio"], 2) ?></td>
+							</tr>
+
+						<?php endforeach ?>
+
+					<?php endif ?> -->
 
 
 
 					<tr>
 						<td></td>
 						<td>
-
-							<!-- <img widtd="40px" src="<?php echo base_url("assets/admin-lte/img/credit/paypal.png") ?>" alt=""> -->
 						</td>
 						<td></td>
 						<td>Subtotal</td>
@@ -162,23 +176,6 @@ $fechas_actual = date_format($date, "d/m/Y");
 							<td>Tax <?php echo $factura->nombre_cartera ?></td>
 							<td>$<?php echo number_format($impuesto, 2) ?></td>
 						</tr>
-
-					<?php endif ?>
-
-
-					<?php if (isset($_SESSION["servicio_extre"])) : ?>
-
-						<?php foreach ($_SESSION["servicio_extre"]["servicios"] as $serv_extr) : ?>
-
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><?php echo $serv_extr["servicio"] ?></td>
-								<td>$<?php echo number_format($serv_extr["precio"], 2) ?></td>
-							</tr>
-
-						<?php endforeach ?>
 
 					<?php endif ?>
 
@@ -208,10 +205,10 @@ $fechas_actual = date_format($date, "d/m/Y");
 
 </html>
 
-<?php 
+<?php
 
-if( isset($_SESSION["servicio_extre"]) ) {
-	unset( $_SESSION["servicio_extre"] );
+if (isset($_SESSION["servicio_extre"])) {
+	unset($_SESSION["servicio_extre"]);
 }
 
 ?>

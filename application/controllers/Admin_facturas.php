@@ -248,8 +248,10 @@ class Admin_facturas  extends CI_Controller
 
 		$impuesto = null;
 		if ($data_insert["cartera_id"] == 2) {
-			$impuesto = para_resivir_paypal($data["servicios_total"]->total_pago) - $data["servicios_total"]->total_pago;
-			// var_dump($impuesto);die();
+
+			$total_pago = isset( $_SESSION["servicio_extre"]["suma_total"] ) ? $data["servicios_total"]->total_pago + $_SESSION["servicio_extre"]["suma_total"] : $data["servicios_total"]->total_pago;
+			
+			$impuesto = para_resivir_paypal($total_pago) - $total_pago;
 		}
 
 		$data["impuesto"] = $impuesto;
@@ -263,6 +265,8 @@ class Admin_facturas  extends CI_Controller
 				$this->db->delete("precio_servicios", ["factura_id" => $ultimoId]);
 			}
 		}
+
+		// echo json_encode($data);die();
 
 		$_SESSION["factura_data"] = $data;
 

@@ -138,6 +138,8 @@ function multiplicar_precio_por_cantidad(cantidad_element, precio_total_element)
     $precio_total = document.getElementById(precio_total_element);
     $precio_total_por_categoria = document.querySelectorAll(".precio_total_servicio");
 
+    console.log($precio_total_por_categoria);
+
     $total = 0;
 
     Array.from($camtidades).forEach(el => {
