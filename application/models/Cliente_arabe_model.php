@@ -229,6 +229,11 @@ class Cliente_arabe_model extends CI_Model
 				$total_menos_paypal = $empleado->total_pago - $impuesto_paypal;
 
 				$impuesto = ($total_menos_paypal * 0.1) + $impuesto_paypal;
+			} else if ($empleado->cartera_id == 31) {
+				$impuesto_paypal = $empleado->total_pago - si_envio_paypal($empleado->total_pago);
+				$total_menos_paypal = $empleado->total_pago - $impuesto_paypal;
+
+				$impuesto =  $impuesto_paypal;
 			}
 
 			$empleado->impuesto = $impuesto;
@@ -258,8 +263,8 @@ class Cliente_arabe_model extends CI_Model
 				INNER JOIN arabe_servicios_cantidad AS ar_ser ON ar_ser.servicio_id = serv.id
 				WHERE ar_ser.arabe_registro_id IN ( $ids )
 				GROUP BY serv.id";
-  
-	  return $this->db->query($sql)->result();
+
+		return $this->db->query($sql)->result();
 	}
 
 	public function servicios_total_factura($ids)
@@ -271,11 +276,11 @@ class Cliente_arabe_model extends CI_Model
 				INNER JOIN arabe_servicios_cantidad AS ar_ser ON ar_ser.servicio_id = serv.id
 				WHERE ar_ser.arabe_registro_id IN ( $ids )
 				";
-  
-	  return $this->db->query($sql)->row();
+
+		return $this->db->query($sql)->row();
 	}
-	
-	
+
+
 	public function facturar_reportes($ids)
 	{
 		$sql = "UPDATE arabe_registros 
@@ -283,7 +288,7 @@ class Cliente_arabe_model extends CI_Model
 				WHERE id IN ($ids)";
 		return $this->db->query($sql);
 	}
-	
+
 	public function reporte_total_bonos($ids)
 	{
 		$sql = "SELECT

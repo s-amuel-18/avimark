@@ -112,7 +112,9 @@
       										<?php if ($empleado->cartera_id == 30) : ?>
       											<!-- <i class="fas fa-money-bill-1-wave fa-fw" style="color: var(--fa-navy);"></i> -->
       											<!-- <i class="fas fa-money-bill-1 fa-fw" style="color: var(--fa-navy);"></i> -->
-      											<i class="fas fa-money-bill text-success" ></i>
+      											<i class="fas fa-money-bill text-success"></i>
+      										<?php elseif ($empleado->cartera_id == 31) : ?>
+      											<strong>BsF</strong>
       										<?php endif ?>
 
       									</td>

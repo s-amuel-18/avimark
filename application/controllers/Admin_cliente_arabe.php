@@ -345,8 +345,6 @@ class Admin_cliente_arabe  extends CI_Controller
 		$empleados = $this->empleados_arabe;
 		$data["empleados"] = $empleados;
 
-
-
 		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_reporte.php", $data, true);
 		$view["scripts"] =  archivos_js([
 			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_reporte.js"),
@@ -402,7 +400,7 @@ class Admin_cliente_arabe  extends CI_Controller
 				["servicio" => "bonos", "precio" => $bonos_totales->total_bonos],
 				["servicio" => "salary", "precio" => $bonos_totales->total_trb_extra],
 			],
-			"suma_total" => $bonos_totales->suma_total 
+			"suma_total" => $bonos_totales->suma_total
 		];
 
 		// echo json_encode($_SESSION["servicio_extre"]["servicios"]);die();
