@@ -16,7 +16,7 @@
       		<div class="col-md-3">
       			<div class="small-box bg-success">
       				<div class="inner">
-      					<h3><?php echo $users?></h3>
+      					<h3><?php echo $users ?></h3>
       					<h5>Usuarios Registrados</h5>
       				</div>
       				<div class="icon"><i class="fas fa-users"></i></div> <a href="contact-email/" class="small-box-footer">
@@ -26,20 +26,41 @@
       					<i class="fas fa-lg fa-arrow-circle-right"></i></a>
       				<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
       			</div>
+
       		</div>
+
+      		<?php if ($tasa_bolivar->precio ?? false) : ?>
+      			<div class="col-md-3">
+      				<div class="small-box bg-warning">
+      					<div class="inner">
+      						<h3><?php echo $tasa_bolivar->precio . "Bs" ?? "Sin Registrar" ?></h3>
+      						<h5>Tasa Bolicvar</h5>
+      					</div>
+      					<div class="icon"><i class="fa fa-dollar-sign"></i></div> <a type="button" data-toggle="modal" data-target="#tata-bs-modal" role="button" class="small-box-footer">
+
+      						Tasa Bolivar
+
+      						<i class="fas fa-lg fa-arrow-circle-right"></i></a>
+      					<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
+      				</div>
+
+      			</div>
+      		<?php endif ?>
+
       		<div class="col-md-3">
       			<div class="small-box bg-info">
       				<div class="inner">
-      					<h3><?php echo $visitas->num_rows()?></h3>
+      					<h3><?php echo $visitas->num_rows() ?></h3>
       					<h5>Vistas Semanal</h5>
       				</div>
-      				<div class="icon"><i class="fas fa-user"></i></div> <a  class="small-box-footer">
+      				<div class="icon"><i class="fas fa-user"></i></div> <a class="small-box-footer">
 
-								Vistas
+      					Vistas
       					<!-- <i class="fas fa-lg fa-arrow-circle-right"></i></a> -->
-      				<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
+      					<div class="overlay d-none"><i class="fas fa-2x fa-spin fa-sync-alt text-gray"></i></div>
       			</div>
       		</div>
+
 
       	</div>
 

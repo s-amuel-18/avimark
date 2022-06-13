@@ -317,6 +317,9 @@ class Admin_cliente_arabe  extends CI_Controller
 		// enviamos el reporte como parametro
 		$data["reporte"] = $reporte;
 
+		$tasa_bolivar = $this->db->order_by('created_at', "DESC")->get('tasa_bolivar')->row();
+		$data["tasa_bolivar"] = $tasa_bolivar;
+
 		// creamos una variable auxiliar que nos va a permitir sumar los valores totales de los servicios.
 		$precio_total_servicios = 0;
 

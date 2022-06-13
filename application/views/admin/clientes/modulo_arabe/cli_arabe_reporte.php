@@ -114,6 +114,14 @@
       											<!-- <i class="fas fa-money-bill-1 fa-fw" style="color: var(--fa-navy);"></i> -->
       											<i class="fas fa-money-bill text-success"></i>
       										<?php elseif ($empleado->cartera_id == 31) : ?>
+      											<?php
+													if ($tasa_bolivar->precio ?? false) {
+														echo number_format(($empleado->total_pago_con_impuesto * $tasa_bolivar->precio ?? 1), 2);
+													} else {
+														echo "Sin Registrar tasa";
+													}
+
+													?>
       											<strong>BsF</strong>
       										<?php endif ?>
 

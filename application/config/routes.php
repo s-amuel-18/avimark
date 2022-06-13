@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -114,6 +114,9 @@ $route['admin/cliente_arabe/crear_reporte']["post"] = 'Admin_cliente_arabe/crear
 $route['admin/cliente_arabe/actualizar_reporte/(.+)']["post"] = 'Admin_cliente_arabe/actualizar_reporte/$1';
 $route['admin/cliente_arabe/eliminar_reporte/(.+)']["post"] = 'Admin_cliente_arabe/eliminar_reporte/$1';
 $route['admin/cliente_arabe/actualizar_facturacion_reporte/(.+)']["get"] = 'Admin_cliente_arabe/actualizar_facturacion_reporte/$1';
+
+// tasa bolivares
+$route['admin/tasa_bolivares/actualizar']["post"] = 'Admin_tasa_bolivares/actualizar';
 
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
