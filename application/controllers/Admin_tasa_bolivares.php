@@ -72,6 +72,6 @@ class Admin_tasa_bolivares  extends CI_Controller
 			"success",
 		);
 
-		redirect("admin_dashboard");
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }

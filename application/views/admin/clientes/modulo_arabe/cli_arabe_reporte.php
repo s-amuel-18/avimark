@@ -63,10 +63,9 @@
       						</thead>
       						<tbody cla>
 
-      							<?php foreach ($reporte as $i =>  $empleado) : ?>
-
-
-
+      							<?php
+									$total_bs = 0;
+									foreach ($reporte as $i =>  $empleado) : ?>
       								<tr>
       									<td style="width: 20px;">
 
@@ -115,8 +114,13 @@
       											<i class="fas fa-money-bill text-success"></i>
       										<?php elseif ($empleado->cartera_id == 31) : ?>
       											<?php
+													$monto_bs = ($empleado->total_pago_con_impuesto * $tasa_bolivar->precio ?? 1);
+
+
+													$total_bs += $monto_bs;
+
 													if ($tasa_bolivar->precio ?? false) {
-														echo number_format(($empleado->total_pago_con_impuesto * $tasa_bolivar->precio ?? 1), 2);
+														echo number_format($monto_bs, 2);
 													} else {
 														echo "Sin Registrar tasa";
 													}
@@ -143,6 +147,9 @@
       								<th>--------</th>
       								<th>Total a pagar</th>
       								<th>$<?php echo number_format($precio_total_servicios, 2) ?></th>
+      								<th></th>
+      								<th></th>
+      								<th><?php echo number_format($total_bs, 2); ?><strong>Bs</strong></th>
       							</tr>
       						</tfoot>
       					</table>
