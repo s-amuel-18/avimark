@@ -130,10 +130,14 @@ $fechas_actual = date_format($date, "d/m/Y");
 
 				<tbody>
 
-					<?php foreach ($servicios as $key => $servicio) : ?>
+					<?php
+					$servicios_total_item = 0;
+					foreach ($servicios as $key => $servicio) :
+						$servicios_total_item += isset($servicio["total"]) ? $servicio["total"] : 0;
+					?>
 						<tr>
 							<td><?php echo $key + 1  ?></td>
-							<td><?php echo isset($servicio["nombre_categoria"]) ?  $servicio["nombre_categoria"]: "" ?></td>
+							<td><?php echo isset($servicio["nombre_categoria"]) ?  $servicio["nombre_categoria"] : "" ?></td>
 							<td><?php echo isset($servicio["precio"])  ? "$" . number_format($servicio["precio"], 2) : "" ?></td>
 							<td><?php echo isset($servicio["cantidad"]) ?  $servicio["cantidad"] : "" ?></td>
 							<td><?php echo isset($servicio["total"]) ? "$" . number_format($servicio["total"], 2) : "" ?></td>
@@ -164,7 +168,7 @@ $fechas_actual = date_format($date, "d/m/Y");
 						</td>
 						<td></td>
 						<td>Subtotal</td>
-						<td>$<?php echo number_format($servicios_total->total_pago, 2) ?></td>
+						<td>$<?php echo number_format($servicios_total_item, 2) ?></td>
 					</tr>
 
 					<?php if ($impuesto or $impuesto == 0) : ?>
