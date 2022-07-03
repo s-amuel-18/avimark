@@ -110,6 +110,35 @@ class Admin_cliente_arabe  extends CI_Controller
 		$this->parser->parse("admin/template/body", $view);
 	}
 
+	public function historial_reportes()
+	{
+		// var_dump($this->servicios_arabe);die();
+
+		if (count($this->servicios_arabe) < 1 or count($this->empleados_arabe) < 1 or !$this->cliente) {
+			message(
+				"Es necesario configurar los empleados, servicios y el cliente que se vincularan a este modulo.",
+				"warning",
+				"warning",
+			);
+
+			redirect("admin_cliente_arabe/configuracion");
+			return false;
+		}
+
+		$reportes = $this->cliente_arabe_model->reportes();
+		$data["reportes"] = $reportes;
+
+		$view["body"] = $this->load->view("admin/clientes/modulo_arabe/cli_arabe_historial_reportes.php", $data, true);
+		$view["scripts"] =  archivos_js([
+
+
+			base_url("assets/js/admin/clientes/cliente_arabe/cli_arabe_index.js"),
+
+		]);
+
+		$this->parser->parse("admin/template/body", $view);
+	}
+
 	public function configuracion()
 	{
 		// empleados

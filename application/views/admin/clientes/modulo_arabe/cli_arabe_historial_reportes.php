@@ -3,12 +3,12 @@
       	<div class="container-fluid">
       		<div class="row mb-2">
       			<div class="col-sm-6">
-      				<h1>Gestor De actividad</h1>
+      				<h1>Historial de reportes</h1>
       			</div>
       			<div class="col-sm-6">
       				<ol class="breadcrumb float-sm-right">
       					<li class="breadcrumb-item"><a href="<?php echo site_url("admin_dashboard") ?>">Home</a></li>
-      					<li class="breadcrumb-item active">Gestor De actividad</li>
+      					<li class="breadcrumb-item active">Historial de reportes</li>
       				</ol>
       			</div>
       		</div>
@@ -26,135 +26,13 @@
 
       	<div class="row">
 
-      		<!-- Configuracionsection -->
-      		<div class="col-md-12">
-      			<div class="card">
-      				<div class="card-header">
-      					<h3 class="card-title">Herramientas</h3>
-
-      					<div class="card-tools">
-
-      						<div class="dropdown dropleft">
-
-      							<a href="<?php echo site_url("admin_cliente_arabe/vista_creacion_registro") ?>" class="btn mr-1 btn-outline-light btn-sm">Nuevo Reporte</a>
-
-      							<button id="drop_config" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-      								<i class="fas fa-bars fa-fw" style="color: var(--fa-navy);"></i>
-      							</button>
-      							<div class="dropdown-menu" aria-labelledby="drop_config">
-      								<a class="dropdown-item dropdown-left" href="<?php echo site_url("admin_cliente_arabe/configuracion") ?>">Configuracion</a>
-      							</div>
-      						</div>
-      					</div>
-      				</div>
-
-
-      			</div>
-
-      		</div>
-
-
-      		<div class="col-lg-3 col-md-6">
-      			<div class="card">
-      				<div class="card-header">
-      					<h3 class="card-title">Empleados</h3>
-
-      					<div class="card-tools">
-      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
-      					</div>
-      				</div>
-      				<div class="card-body">
-
-
-      					<!-- tabla de Clientes -->
-      					<table class="table table-striped table-valign-middle">
-      						<thead class="">
-      							<tr>
-      								<th>#</th>
-      								<!-- <th>ID</th> -->
-      								<th>Nombre</th>
-      								<!-- <th>Acciones</th> -->
-      							</tr>
-      						</thead>
-      						<tbody>
-
-      							<?php foreach ($this->empleados_arabe as $i => $empleado) : ?>
-
-      								<tr id="empleado_id_<?php echo $empleado->id ?>">
-      									<td><?php echo $i + 1 ?></td>
-      									<!-- <td><?php echo $empleado->id ?></td> -->
-      									<td><?php echo $empleado->nombre ?></td>
-
-      								</tr>
-
-      							<?php endforeach; ?>
-
-      						</tbody>
-      					</table>
-
-      					<!-- tabla de Clientes end -->
-
-
-
-
-      				</div>
-      			</div>
-      		</div>
-
-      		<!-- servicios -->
-      		<div class="col-lg-3 col-md-6">
-      			<div class="card">
-      				<div class="card-header">
-      					<h3 class="card-title">Servicios</h3>
-
-      					<div class="card-tools">
-      						<!-- <button class="btn btn-primary btn-sm" type="button" data-titulo="Nuevo cliente" data-toggle="modal" data-target="#nuevo_cliente">Nuevo cliente</button> -->
-      					</div>
-      				</div>
-      				<div class="card-body">
-      					<!-- tabla de Clientes -->
-      					<table class="table  table-striped table-valign-middle">
-      						<thead class="">
-      							<tr>
-      								<th>#</th>
-      								<!-- <th>ID</th> -->
-      								<th>Nombre</th>
-      								<!-- <th>Acciones</th> -->
-      							</tr>
-      						</thead>
-      						<tbody>
-
-      							<?php foreach ($this->servicios_arabe as $i => $servicio) : ?>
-
-      								<tr id="servicio_id_<?php echo $servicio->id ?>">
-      									<td><?php echo $i + 1 ?></td>
-      									<!-- <td><?php echo $servicio->id ?></td> -->
-      									<td><?php echo $servicio->nombre ?></td>
-      								</tr>
-
-      							<?php endforeach; ?>
-
-      						</tbody>
-      					</table>
-
-      					<!-- tabla de Clientes end -->
-
-
-
-
-      				</div>
-      			</div>
-      		</div>
-
       		<!-- Registros semanales -->
-      		<div class="col-lg-6 col-md-12">
+      		<div class="col">
       			<div class="card">
       				<div class="card-header">
       					<h3 class="card-title">Reporte</h3>
 
       					<div class="card-tools">
-      						<a href="<?php echo site_url("admin_cliente_arabe/historial_reportes") ?>" class="btn btn-info btn-sm">Ver Historial</a>
       						<button form="form_reportes_select" id="submit_button_reportes_select" class="btn btn-primary btn-sm" type="submit" disabled>Ver Reporte</button>
       					</div>
       				</div>
@@ -164,7 +42,7 @@
 
       						<form action="<?php echo site_url("admin_cliente_arabe/vista_reporte/") ?>" id="form_reportes_select" method="GET">
       							<form></form>
-      							<table class="table  table-striped table-valign-middle">
+      							<table class="table datatable table-striped table-valign-middle">
       								<thead class="">
       									<tr>
       										<th>#</th>
