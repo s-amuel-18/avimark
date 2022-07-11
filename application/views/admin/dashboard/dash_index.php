@@ -34,7 +34,7 @@
       				<div class="small-box bg-warning">
       					<div class="inner">
       						<h3><?php echo $tasa_bolivar->precio . "Bs" ?? "Sin Registrar" ?></h3>
-      						<h5>Tasa Bolicvar</h5>
+      						<h5>Tasa Bolivar</h5>
       					</div>
       					<div class="icon"><i class="fa fa-dollar-sign"></i></div> <a type="button" data-toggle="modal" data-target="#tata-bs-modal" role="button" class="small-box-footer">
 

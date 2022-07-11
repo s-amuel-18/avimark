@@ -38,7 +38,7 @@
       					</div>
       				</div>
 
-      				<div class="card-body">
+      				<div class="card-body table-responsive">
       					<table class="table w-100  text-center table-striped table-valign-middle">
       						<thead class="">
       							<tr>

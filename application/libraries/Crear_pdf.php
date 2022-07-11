@@ -20,7 +20,6 @@ class Crear_pdf
 		$this->ci->load->library([
 			"pdf",
 		]);
-		
 	}
 
 	public function factura($data = [])
@@ -28,7 +27,7 @@ class Crear_pdf
 		// en caso de que exista la variable de sesion servicio_extre 
 		// $monto_extra = isset( $_SESSION["servicio_extre"] ) ? count($_SESSION["servicio_extre"]) + 1: 0;
 		$monto_extra = 0;
-		
+
 		// esto se hace para pasar el array de objetos que nos devuelve la variable "Servicios" a un array normal
 		$de_obj_a_arr_servicios = [];
 
@@ -45,9 +44,9 @@ class Crear_pdf
 		}
 
 		$data["servicios"] = $de_obj_a_arr_servicios;
-		
-		
-		if(isset( $_SESSION["servicio_extre"] )) {
+
+		// dd($_SESSION["servicio_extre"]);
+		if (isset($_SESSION["servicio_extre"])) {
 			foreach ($_SESSION["servicio_extre"]["servicios"] as $key => $serv_extr) {
 				# code...
 				$newArray = [
@@ -57,11 +56,13 @@ class Crear_pdf
 					"precio" => $serv_extr["precio"],
 					"total" => $serv_extr["precio"],
 				];
-				
-				array_push($data["servicios"], $newArray);
+
+				if ($newArray["total"] > 0) {
+					array_push($data["servicios"], $newArray);
+				}
 			}
 		}
-		
+
 
 		// echo json_encode($data["servicios"]);die();
 
@@ -85,5 +86,4 @@ class Crear_pdf
 
 		$dompdf->stream("FAC{$data["factura"]->numero_factura}.pdf", ["Attachment" => false]);
 	}
-
 }
