@@ -35,10 +35,10 @@
       				</div>
 
       				<div class="card-body">
-      					<form action="<?php echo site_url("admin/cliente_arabe/actualizar_reporte/" .$id_reporte )?>" method="POST" id="form_reporte_arabe">
-						  <!-- id_reporte -->
-						  <input type="hidden" name="id_reporte" value="<?php echo $id_reporte?>">
-						  
+      					<form action="<?php echo site_url("admin/cliente_arabe/actualizar_reporte/" . $id_reporte) ?>" method="POST" id="form_reporte_arabe">
+      						<!-- id_reporte -->
+      						<input type="hidden" name="id_reporte" value="<?php echo $id_reporte ?>">
+
       						<table class="table ">
       							<thead class="">
       								<tr>
@@ -64,7 +64,7 @@
       												<input required class="form-control solo_entero_positivo <?php echo  $servicio->precio_empleado_mayor ? 'input_reporte_servicio' : ''  ?> " data-servicio="<?php echo  $servicio->nombre  ?>" data-id="<?php echo  $servicio->id  ?>" type="number" name="servicios_<?php echo  $servicio->id  ?>[<?php echo  $empleado->id  ?>]" value="<?php echo  $servicio->cantidad_realizada  ?>" min="0" placeholder="<?php echo $servicio->nombre ?>">
       											</td>
       										<?php endforeach ?>
-      						
+
       										<td>
 
       											<div class="input-group m-0">
@@ -73,15 +73,15 @@
       												</div>
       												<input required id="bono<?php echo $empleado->id ?>" value="<?php echo $empleado->bono ?>" placeholder="$...." class="form-control numero" type="number" min="0" name="bono[<?php echo $empleado->id ?>]">
       											</div>
-												  
-											</td>
-											<td>
-												  <div class="input-group m-0">
-													  <div class="input-group-prepend">
-														  <span class="input-group-text">$</span>
-													  </div>
-													  <input required class="form-control numero" type="number" placeholder="$...." value="<?php echo $empleado->tabajo_extra ?>" min="0" name="trabajo_extra[<?php echo $empleado->id ?>]" placeholder="Trabajo extra">
-												  </div>
+
+      										</td>
+      										<td>
+      											<div class="input-group m-0">
+      												<div class="input-group-prepend">
+      													<span class="input-group-text">$</span>
+      												</div>
+      												<input required class="form-control numero" type="number" placeholder="$...." value="<?php echo $empleado->tabajo_extra ?>" min="0" name="trabajo_extra[<?php echo $empleado->id ?>]" placeholder="Trabajo extra">
+      											</div>
       											<!-- <input > -->
       										</td>
 

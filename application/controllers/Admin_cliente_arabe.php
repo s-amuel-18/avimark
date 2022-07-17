@@ -372,7 +372,8 @@ class Admin_cliente_arabe  extends CI_Controller
 		$data["precio_total_servicios"] = $precio_total_servicios;
 
 		$servicios = $this->servicios_arabe;
-		$data["servicios"] = $servicios;
+
+		$data["servicios"] = $reporte[0]->servicios;
 
 		$empleados = $this->empleados_arabe;
 		$data["empleados"] = $empleados;

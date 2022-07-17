@@ -81,7 +81,7 @@
       									<td><?php echo $empleado->nombre ?></td>
       									<td><?php echo $empleado->cartera ?></td>
       									<?php foreach ($empleado->servicios as $servicio) : ?>
-      										<td>
+      										<td style="min-width: 200px;">
       											<div class="row no-guetter">
 
       												<div class="col-4">
@@ -100,14 +100,14 @@
       											</div>
       										</td>
       									<?php endforeach ?>
-      									<td style="max-width: 180px;">$<?php echo number_format($empleado->bono, 2) ?></td>
-      									<td style="max-width: 180px;">$<?php echo number_format($empleado->tabajo_extra, 2) ?></td>
-      									<td style="max-width: 180px;">$<?php echo number_format($empleado->total_pago, 2) ?></td>
-      									<td style="max-width: 180px;">$<?php echo number_format($empleado->impuesto, 2); ?></td>
-      									<td style="max-width: 180px;">
+      									<td style="min-width: 100px;">$<?php echo number_format($empleado->bono, 2) ?></td>
+      									<td style="min-width: 100px;">$<?php echo number_format($empleado->tabajo_extra, 2) ?></td>
+      									<td style="min-width: 100px;">$<?php echo number_format($empleado->total_pago, 2) ?></td>
+      									<td style="min-width: 100px;">$<?php echo number_format($empleado->impuesto, 2); ?></td>
+      									<td style="min-width: 100px;">
       										$<?php echo number_format($empleado->total_pago_con_impuesto, 2) ?>
       									</td>
-      									<td>
+      									<td style="min-width: 100px;">
       										<?php if ($empleado->cartera_id == 30) : ?>
       											<!-- <i class="fas fa-money-bill-1-wave fa-fw" style="color: var(--fa-navy);"></i> -->
       											<!-- <i class="fas fa-money-bill-1 fa-fw" style="color: var(--fa-navy);"></i> -->
