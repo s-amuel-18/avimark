@@ -11,10 +11,8 @@
                         <p class="p-large">Si necesitas ayuda con darle imagen a tu empresa, somos tu mejor aliado. Te
                             podemos ayudar con todo lo que necesites.
                         </p>
-                        <a class="btn-solid-lg page-scroll" href="#contact"
-                            style="text-transform: uppercase;">Contáctanos</a>
-                        <a class="btn-outline-lg page-scroll" target="_blank"
-                            href="https://www.upwork.com/agencies/~017f726a6363b80ea5">NUESTRO UPWORK</a>
+                        <a class="btn-solid-lg page-scroll" href="#contact" style="text-transform: uppercase;">Contáctanos</a>
+                        <a class="btn-outline-lg page-scroll" target="_blank" href="https://www.upwork.com/agencies/~017f726a6363b80ea5">NUESTRO UPWORK</a>
                     </div>
                     <!-- end of text-container -->
                 </div>
@@ -32,19 +30,19 @@
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/details-slide-1.jpg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/details-slide-1.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/details-slide-2.jpg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/details-slide-2.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/details-slide-3.jpg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/details-slide-3.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
@@ -99,25 +97,25 @@
                         <div class="swiper-container image-slider-2">
                             <div class="swiper-wrapper change-color">
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/danny ocean.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/danny ocean.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/bm envios.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/bm envios.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/favicoin.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/favicoin.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/fumimark.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/fumimark.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/influensers.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/influensers.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/stock.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/stock.png" alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/logos/sonrrisa.png" alt="alternative">
+                                    <img class="logo-d img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/logos/sonrrisa.png" alt="alternative">
                                 </div>
                             </div>
                             <!-- end of swiper-wrapper -->
@@ -143,7 +141,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <img class="img-fluid" src="<?php echo base_url("assets/front-landing/")?>images/instructor.jpg" alt="alternative">
+                    <img class="img-fluid" src="<?php echo base_url("assets/front-landing/") ?>images/CEO.png" alt="alternative">
                 </div>
                 <!-- end of col -->
                 <div class="col-lg-6">
@@ -291,8 +289,7 @@
                             </li>
                             <li class="media">
                                 <i class="fas fa-envelope"></i>
-                                <div class="media-body"><a class="light-gray"
-                                        href="mailto:avimarkstudio@gmail.com">avimarkstudio@gmail.com</a> </div>
+                                <div class="media-body"><a class="light-gray" href="mailto:avimarkstudio@gmail.com">avimarkstudio@gmail.com</a> </div>
                             </li>
                         </ul>
                     </div>
@@ -320,8 +317,7 @@
                         </div>
                         <div class="form-group checkbox">
                             <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>He leído y acepto las
-                            declaraciones de Avimark<a href="privacy-policy.html">Privacy Policy</a> and <a
-                                href="terms-conditions.html">Terms Conditions</a>
+                            declaraciones de Avimark<a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a>
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
